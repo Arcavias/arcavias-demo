@@ -1,0 +1,31 @@
+{
+	"name": "arcavias/arcavias-demo",
+	"description": "Demo application for the Arcavias e-commerce framework",
+	"homepage": "http://www.arcavias.com/en",
+	"license": "LGPL-3.0",
+	"type": "project",
+	"keywords": ["e-commerce", "shop", "portal", "market place", "demo"],
+	"support": {
+		"source": "https://github.com/Arcavias/arcavias-demo",
+		"issues": "https://bugs.arcavias.com",
+		"forum": "https://forum.arcavias.com",
+		"wiki": "https://docs.arcavias.com"
+	},
+	"require": {
+		"php": ">=5.2.0",
+		"arcavias/arcavias-core": "dev-master",
+		"arcavias/ext-zend": "dev-master",
+		"arcavias/extension-installer": "dev-master"
+	},
+	"autoload": {
+		"psr-0": {
+			"Zend": "zendlib",
+			"": ["zfapp", "admin"]
+		},
+		"classmap": [
+			"zfapp",
+			"zendlib",
+			"admin"
+		]
+	}
+}

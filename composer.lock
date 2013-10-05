@@ -1,0 +1,157 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "5f0904c53499a39245d547788508eb7d",
+    "packages": [
+        {
+            "name": "arcavias/arcavias-core",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Arcavias/arcavias-core.git",
+                "reference": "d27b18d48cdbe75267fe5670328f0869cbea0f45"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Arcavias/arcavias-core/zipball/d27b18d48cdbe75267fe5670328f0869cbea0f45",
+                "reference": "d27b18d48cdbe75267fe5670328f0869cbea0f45",
+                "shasum": ""
+            },
+            "require": {
+                "arcavias/extension-installer": "dev-master",
+                "ext-curl": "*",
+                "ext-dom": "*",
+                "ext-json": "*",
+                "ext-pcre": "*",
+                "ext-pdo": "*",
+                "ext-pdo_mysql": "*",
+                "ext-zip": "*",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "MShop": "lib/mshoplib/src",
+                    "MAdmin": "lib/mshoplib/src",
+                    "MW": "lib/mwlib/src",
+                    "Client_Html": "client/html/src",
+                    "Controller_Frontend": "controller/frontend/src",
+                    "Controller_ExtJS": "controller/extjs/src",
+                    "Controller_Jobs": "controller/jobs/src",
+                    "": [
+                        "lib/mwlib/lib",
+                        "."
+                    ]
+                },
+                "classmap": [
+                    "lib/mshoplib/src",
+                    "lib/mwlib/lib",
+                    "lib/mwlib/src",
+                    "client/html/src",
+                    "controller/frontend/src",
+                    "controller/extjs/src",
+                    "controller/jobs/src",
+                    "Arcavias.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "description": "e-commerce framework for web shops, portals and market places",
+            "homepage": "http://www.arcavias.com/en",
+            "keywords": [
+                "e-commerce",
+                "market place",
+                "portal",
+                "shop"
+            ],
+            "time": "2013-10-05 10:36:57"
+        },
+        {
+            "name": "arcavias/ext-zend",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Arcavias/ext-zend.git",
+                "reference": "e3ffb759d3a7c7254638b3e32236d99242989090"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Arcavias/ext-zend/zipball/e3ffb759d3a7c7254638b3e32236d99242989090",
+                "reference": "e3ffb759d3a7c7254638b3e32236d99242989090",
+                "shasum": ""
+            },
+            "require": {
+                "arcavias/extension-installer": "dev-master"
+            },
+            "type": "arcavias-extension",
+            "autoload": {
+                "psr-0": {
+                    "MW": "lib/custom/src"
+                },
+                "classmap": [
+                    "lib/custom/src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "description": "Arcavias extension for utilizing Zend Framework components",
+            "homepage": "http://www.arcavias.com/en",
+            "time": "2013-10-03 16:38:42"
+        },
+        {
+            "name": "arcavias/extension-installer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Arcavias/extension-installer.git",
+                "reference": "d9585ed9256de66b5aff2e65649955f10193b631"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Arcavias/extension-installer/zipball/d9585ed9256de66b5aff2e65649955f10193b631",
+                "reference": "d9585ed9256de66b5aff2e65649955f10193b631",
+                "shasum": ""
+            },
+            "type": "composer-installer",
+            "extra": {
+                "class": "Arcavias\\Composer\\ExtensionInstaller"
+            },
+            "autoload": {
+                "psr-0": {
+                    "Arcavias\\Composer": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "description": "custom composer installer for Arcavias extensions",
+            "homepage": "http://www.arcavias.com/en",
+            "time": "2013-07-08 12:47:55"
+        }
+    ],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "arcavias/arcavias-core": 20,
+        "arcavias/ext-zend": 20,
+        "arcavias/extension-installer": 20
+    },
+    "platform": {
+        "php": ">=5.2.0"
+    },
+    "platform-dev": [
+
+    ]
+}
