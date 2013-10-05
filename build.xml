@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Arcavias demo application" default="install">
+
+	<property name="coredir" value="${project.basedir}/vendor/arcavias/arcavias-core" override="true" />
+
+	<target name="resource" description="Creates the resource configuration">
+		<echo msg="Creating resource configuration" />
+		<property name="dbpass" value="" />
+		<propertyprompt propertyName="dbadapter" promptText="Database type" defaultValue="mysql" useExistingValue="true" />
+		<propertyprompt propertyName="dbhost" promptText="Database host" defaultValue="127.0.0.1" useExistingValue="true" />
+		<propertyprompt propertyName="dbport" promptText="Database port" defaultValue="3306" useExistingValue="true" />
+		<propertyprompt propertyName="dbname" promptText="Database name" defaultValue="arcavias" useExistingValue="true" />
+		<propertyprompt propertyName="dbuser" promptText="Database user name" defaultValue="root" useExistingValue="true" />
+		<propertyprompt propertyName="dbpass" promptText="Database password" defaultValue="" />
+		<echo file="config/resource.php">
+&lt;?php
+return array(
+	'db' => array(
+		'adapter' => '${dbadapter}',
+		'host' => '${dbhost}',
+		'port' => '${dbport}',
+		'database' => '${dbname}',
+		'username' => '${dbuser}',
+		'password' => '${dbpass}',
+		'limit' => 2,
+		'opt-persistent' => false,
+		'stmt' => array(
+			"SET NAMES 'utf8'",
+			"SET SESSION sql_mode='ANSI'"
+		)
+	)
+);
+		</echo>
+	</target>
+
+	<target name="composer" description="Installs the required packages via composer">
+		<echo msg="Installing required packages via composer" />
+		<exec command="composer install" checkreturn="true" logoutput="true" />
+	</target>
+
+	<target name="setuptest" description="Sets up database incl. unit test data">
+		<echo msg="Setting up test database" />
+		<exec command="php ${coredir}/setup.php --config=${project.basedir}/config --ext=${project.basedir}/ext unittest" checkreturn="true" logoutput="true"/>
+	</target>
+
+	<target name="setupperf" description="Sets up database incl. performance test data">
+		<echo msg="Setting up performance data" />
+		<exec command="php ${coredir}/setup.php --config=${project.basedir}/config --ext=${project.basedir}/ext unitperf" checkreturn="true" logoutput="true"/>
+	</target>
+
+	<target name="install" depends="resource,composer,setuptest" description="Installs the Arcavias demo application with unit test data" />
+
+</project>
