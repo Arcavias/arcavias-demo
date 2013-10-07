@@ -38,6 +38,13 @@ return array(
 		<echo msg="Installing required packages via composer" />
 		<exec command="composer install" checkreturn="true" logoutput="true" />
 	</target>
+	
+	<target name="permission" description="Sets the necessary permissions">
+		<chmod mode="0777">
+			<fileset dir="images/files" />
+			<fileset dir="images/preview" />
+		</chmod>
+	</target>
 
 	<target name="setuptest" description="Sets up database incl. unit test data">
 		<echo msg="Setting up test database" />
@@ -49,6 +56,6 @@ return array(
 		<exec command="php ${coredir}/setup.php --config=${project.basedir}/config --ext=${project.basedir}/ext unitperf" checkreturn="true" logoutput="true"/>
 	</target>
 
-	<target name="install" depends="resource,composer,setuptest" description="Installs the Arcavias demo application with unit test data" />
+	<target name="install" depends="resource,composer,permission,setuptest" description="Installs the Arcavias demo application with unit test data" />
 
 </project>
