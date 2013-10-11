@@ -38,8 +38,11 @@ return array(
 		<echo msg="Installing required packages via composer" />
 		<exec command="composer install" checkreturn="true" logoutput="true" />
 	</target>
-	
+
 	<target name="permission" description="Sets the necessary permissions">
+		<mkdir dir="images/files"/>
+		<mkdir dir="images/preview"/>
+
 		<chmod mode="0777">
 			<fileset dir="images/files" />
 			<fileset dir="images/preview" />
