@@ -14,9 +14,8 @@
 	"require": {
 		"php": ">=5.2.0",
 		"arcavias/arcavias-core": "dev-master",
-		"arcavias/ext-zend": "dev-master",
-		"arcavias/ext-phpexcel": "dev-master",
-		"arcavias/extension-installer": "dev-master"
+		"arcavias/extension-installer": "dev-master",
+		"arcavias/ext-zend": "dev-master"
 	},
 	"autoload": {
 		"psr-0": {
