@@ -8,6 +8,7 @@
 abstract class Application_Controller_Action_Abstract extends Zend_Controller_Action
 {
 	private $_arcavias;
+	private $_serverUrl;
 
 
 	public function init()
@@ -24,7 +25,6 @@ abstract class Application_Controller_Action_Abstract extends Zend_Controller_Ac
 
 		$basescript = $this->getFrontController()->getBaseUrl();
 		$pathstart = dirname( $basescript );
-
 
 		$params = $this->_getAllParams();
 
@@ -176,7 +176,7 @@ abstract class Application_Controller_Action_Abstract extends Zend_Controller_Ac
 
 		$view = new MW_View_Default();
 
-		$helper = new MW_View_Helper_Url_Zend( $view, $router );
+		$helper = new MW_View_Helper_Url_Zend( $view, $router, $this->_getServerUrl() );
 		$view->addHelper( 'url', $helper );
 
 		$helper = new MW_View_Helper_Translate_Default( $view, $context->getI18n() );
@@ -208,5 +208,42 @@ abstract class Application_Controller_Action_Abstract extends Zend_Controller_Ac
 		}
 
 		return $this->_arcavias;
+	}
+
+
+	protected function _getServerUrl()
+	{
+		if( $this->_serverUrl === null )
+		{
+			$scheme = 'http';
+
+			if( isset( $_SERVER['HTTPS'] ) && ( $_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] === true )
+				|| isset( $_SERVER['HTTP_SCHEME'] ) && $_SERVER['HTTP_SCHEME'] == 'https'
+				|| isset( $_SERVER['SERVER_PORT'] ) && $_SERVER['SERVER_PORT'] == 443
+			) {
+				$scheme = 'https';
+			}
+
+			if( isset( $_SERVER['HTTP_HOST'] ) && !empty( $_SERVER['HTTP_HOST'] ) ) {
+				$host = $_SERVER['HTTP_HOST'];
+			} elseif( isset( $_SERVER['SERVER_NAME'] ) && !empty( $_SERVER['SERVER_NAME'] ) ) {
+				$host = $_SERVER['SERVER_NAME'];
+			} elseif( isset( $_SERVER['SERVER_ADDR'] ) && !empty( $_SERVER['SERVER_ADDR'] ) ) {
+				$host = $_SERVER['SERVER_ADDR'];
+			} else {
+				$host = 'localhost';
+			}
+
+			if( isset( $_SERVER['SERVER_PORT'] )
+				&& ( ( $scheme == 'http' && $_SERVER['SERVER_PORT'] != 80 )
+				|| ( $scheme == 'https' && $_SERVER['SERVER_PORT'] != 443 ) )
+			) {
+				$host .= ':' . $_SERVER['SERVER_PORT'];
+			}
+
+			$this->_serverUrl = $scheme . '://' . $host;
+		}
+
+		return $this->_serverUrl;
 	}
 }
