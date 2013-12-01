@@ -9,6 +9,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
 	protected function _initRoutes()
 	{
+		$config = Zend_Registry::get('config');
 		$front = Zend_Controller_Front::getInstance();
 		$router = $front->getRouter();
 
@@ -19,7 +20,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 				'module' => 'default',
 				'controller' => 'catalog',
 				'action' => 'list',
-				'site' => 'unittest',
+				'site' => ( isset( $config['defaultSite'] ) ? $config['defaultSite'] : 'unittest' ),
 				'a-name' => '',
 			)
 		);
@@ -32,7 +33,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 				'module' => 'default',
 				'controller' => 'catalog',
 				'action' => 'list',
-				'site' => 'unittest',
+				'site' => ( isset( $config['defaultSite'] ) ? $config['defaultSite'] : 'unittest' ),
 			)
 		);
 		$router->addRoute( 'routeMin', $route );
