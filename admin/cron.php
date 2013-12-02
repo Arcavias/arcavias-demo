@@ -34,11 +34,12 @@ try
 
 	require_once $basedir . 'vendor/autoload.php';
 
+	$arcavias = new Arcavias( array( $basedir . 'ext' ) );
+
 	$configPaths = $arcavias->getConfigPaths( 'mysql' );
 	$configPaths[] = $basedir . 'config';
 	$configPaths[] = $appdir . 'config';
 
-	$arcavias = new Arcavias( array( $basedir . 'ext' ) );
 	$jobs = new Jobs( $arcavias, $configPaths );
 	$jobs->execute( $jobnames, $sites );
 }
