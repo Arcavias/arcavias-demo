@@ -76,7 +76,7 @@ try
 
 	$sites = array( 'default' );
 	if( count( $params ) > 0 ) {
-		$sitenames = explode( ' ', array_shift( $params ) );
+		$sites = explode( ' ', array_shift( $params ) );
 	}
 
 
