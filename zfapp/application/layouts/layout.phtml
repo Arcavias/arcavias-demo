@@ -28,6 +28,7 @@ $sites = $this->sites();
 		<?php echo ( isset( $this->stage ) ? $this->stage->getHeader() : '' ); ?>
 		<?php echo ( isset( $this->list ) ? $this->list->getHeader() : '' ); ?>
 		<?php echo ( isset( $this->detail ) ? $this->detail->getHeader() : '' ); ?>
+		<?php echo ( isset( $this->session ) ? $this->session->getHeader() : '' ); ?>
 		<?php echo ( isset( $this->basket ) ? $this->basket->getHeader() : '' ); ?>
 		<?php echo ( isset( $this->minibasket ) ? $this->minibasket->getHeader() : '' ); ?>
 		<?php echo ( isset( $this->checkout ) ? $this->checkout->getHeader() : '' ); ?>
@@ -98,6 +99,7 @@ $sites = $this->sites();
 							<div id="contentRight">
 								<?php echo ( isset( $this->stage ) ? $this->stage->getBody() : '' ); ?>
 								<?php echo $this->layout()->content; ?>
+								<?php echo ( isset( $this->session ) ? $this->session->getBody() : '' ); ?>
 							</div>
 							<?php else : ?>
 							<div id="contentFull">

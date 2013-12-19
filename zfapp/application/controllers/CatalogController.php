@@ -97,6 +97,10 @@ class CatalogController extends Application_Controller_Action_Abstract
 		$this->view->detail->setView( $this->_createView() );
 		$this->view->detail->process();
 
+		$this->view->session = Client_Html_Catalog_Session_Factory::createClient( $context, $templatePaths );
+		$this->view->session->setView( $this->_createView() );
+		$this->view->session->process();
+
 		$this->view->minibasket = Client_Html_Basket_Mini_Factory::createClient( $context, $templatePaths );
 		$this->view->minibasket->setView( $this->_createView() );
 		$this->view->minibasket->process();
