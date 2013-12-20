@@ -4,17 +4,15 @@
 
 	<property name="coredir" value="${project.basedir}/vendor/arcavias/arcavias-core" override="true" />
 
-	<target name="resource" description="Creates the resource configuration">
-		<echo msg="Creating resource configuration" />
-		<property name="dbpass" value="" />
-		<propertyprompt propertyName="dbadapter" promptText="Database type" defaultValue="mysql" useExistingValue="true" />
-		<propertyprompt propertyName="dbhost" promptText="Database host" defaultValue="127.0.0.1" useExistingValue="true" />
-		<propertyprompt propertyName="dbport" promptText="Database port" defaultValue="3306" useExistingValue="true" />
-		<propertyprompt propertyName="dbname" promptText="Database name" defaultValue="arcavias" useExistingValue="true" />
-		<propertyprompt propertyName="dbuser" promptText="Database user name" defaultValue="root" useExistingValue="true" />
-		<propertyprompt propertyName="dbpass" promptText="Database password" defaultValue="" />
-		<echo file="config/resource.php">
-&lt;?php
+	<target name="database" description="Creates the database configuration">
+		<echo msg="Creating database configuration" />
+		<input propertyName="dbadapter" promptChar="   :" defaultValue="mysql" >Database type</input>
+		<input propertyName="dbhost" promptChar=" :" defaultValue="localhost" >Server host</input>
+		<input propertyName="dbport" promptChar="      :" defaultValue="3306" >Server port</input>
+		<input propertyName="dbname" promptChar=":" defaultValue="arcavias" >Database name</input>
+		<input propertyName="dbuser" promptChar="        :" defaultValue="root" >User name</input>
+		<input propertyName="dbpass" promptChar="             :" defaultValue="" >Password</input>
+		<echo file="config/resource.php">&lt;?php
 return array(
 	'db' => array(
 		'adapter' => '${dbadapter}',
@@ -30,8 +28,34 @@ return array(
 			"SET SESSION sql_mode='ANSI'"
 		)
 	)
-);
-		</echo>
+);</echo>
+	</target>
+
+	<target name="email" description="Creates the e-mail configuration">
+		<echo msg="Creating e-mail configuration" />
+		<input propertyname="mailfrom" promptChar="      :" defaultValue="" >Sender e-mail</input>
+		<input propertyname="mailhost" promptChar=" :" defaultValue="localhost" >SMTP host</input>
+		<input propertyname="mailport" promptChar="        :" defaultValue="25" >SMTP port</input>
+		<input propertyname="mailuser" promptChar="             :" >User name</input>
+		<input propertyname="mailpass" promptChar="              :" >Password</input>
+		<input propertyname="mailssl" promptChar=":" defaultValue="" validArgs=",ssl,tls" >Security </input>
+		<input propertyname="mailauth" promptChar=":" defaultValue="" validArgs=",plain,login,crammd5 ">Auth type </input>
+		<echo file="config/client.php">&lt;?php
+return array(
+	'html' => array(
+		'email' => array(
+			'from-email' => '${mailfrom}',
+			'server' => array(
+				'host' => '${mailhost}',
+				'port' => '${mailport}',
+				'ssl' => '${mailssl}',
+				'auth' => '${mailauth}',
+				'username' => '${mailuser}',
+				'password' => '${mailpass}',
+			)
+		)
+	)
+);</echo>
 	</target>
 
 	<target name="composer" description="Installs the required packages via composer">
@@ -59,6 +83,6 @@ return array(
 		<exec command="php ${coredir}/setup.php --config=${project.basedir}/config --ext=${project.basedir}/ext unitperf" checkreturn="true" logoutput="true"/>
 	</target>
 
-	<target name="install" depends="resource,composer,permission,setuptest" description="Installs the Arcavias demo application with unit test data" />
+	<target name="install" depends="database,email,composer,permission,setuptest" description="Installs the Arcavias demo application with unit test data" />
 
 </project>
