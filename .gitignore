@@ -2,3 +2,4 @@ ext/*
 config/*
 images/*
 vendor/
+*.log
