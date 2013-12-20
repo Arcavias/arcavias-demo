@@ -1,0 +1,199 @@
+<message> 2013-12-20 15:51:06 7 MShop_Locale_Manager_Site_Default::_getSearchResults: SQL statement: 
+			SELECT mlocsi."id", mlocsi."parentid", mlocsi."code", mlocsi."label", mlocsi."config", mlocsi."status",
+				mlocsi."editor", mlocsi."mtime", mlocsi."ctime"
+			FROM "mshop_locale_site" AS mlocsi
+			WHERE mlocsi."code" = 'unittest'
+			ORDER BY mlocsi."id" ASC
+			LIMIT 100 OFFSET 0
+		<message> 2013-12-20 15:51:06 7 MShop_Locale_Manager_Default::_getSearchResults: SQL statement: 
+			SELECT DISTINCT mloc."id", mloc."siteid", mloc."langid", mloc."currencyid", mloc."pos", mloc."status",
+				mloc."mtime", mloc."editor", mloc."ctime"
+			FROM "mshop_locale" AS mloc
+			LEFT JOIN "mshop_locale_site" AS mlocsi ON (mloc."siteid" = mlocsi."id")
+			LEFT JOIN "mshop_locale_language" AS mlocla ON (mloc."langid" = mlocla."id")
+			LEFT JOIN "mshop_locale_currency" AS mloccu ON (mloc."currencyid" = mloccu."id")
+			WHERE ( mloc."siteid" IN (4560) AND mloc."langid" = 'en' AND mloc."currencyid" = '' AND 1 = 1 )
+			ORDER BY mloc."id" ASC
+			LIMIT 100 OFFSET 0
+		<message> 2013-12-20 15:51:07 7 MShop_Locale_Manager_Default::_getSearchResults: SQL statement: 
+			SELECT DISTINCT mloc."id", mloc."siteid", mloc."langid", mloc."currencyid", mloc."pos", mloc."status",
+				mloc."mtime", mloc."editor", mloc."ctime"
+			FROM "mshop_locale" AS mloc
+			LEFT JOIN "mshop_locale_site" AS mlocsi ON (mloc."siteid" = mlocsi."id")
+			LEFT JOIN "mshop_locale_language" AS mlocla ON (mloc."langid" = mlocla."id")
+			LEFT JOIN "mshop_locale_currency" AS mloccu ON (mloc."currencyid" = mloccu."id")
+			WHERE ( mloc."siteid" IN (4560) AND 1 = 1 )
+			ORDER BY mloc."pos" ASC
+			LIMIT 100 OFFSET 0
+		<message> 2013-12-20 15:51:07 7 MShop_Common_Manager_Abstract::_searchItems(0.63014030456543ms): SQL statement: 
+			SELECT DISTINCT mord."id", mord."baseid", mord."siteid", mord."type", mord."datepayment", mord."datedelivery",
+				mord."statuspayment", mord."statusdelivery", mord."relatedid", mord."ctime", mord."mtime", mord."editor"
+			FROM "mshop_order" AS mord
+			
+			WHERE ( mord."siteid" IN (4560) AND mord."datepayment" = '2008-02-15 12:34:56' )
+			
+			LIMIT 100 OFFSET 0
+		<message> 2013-12-20 15:51:07 7 MShop_Common_Manager_Abstract::_searchItems(0.84018707275391ms): SQL statement: 
+			SELECT DISTINCT mordba."id", mordba."siteid", mordba."sitecode", mordba."customerid", mordba."langid",
+				mordba."currencyid", mordba."price", mordba."costs", mordba."rebate", mordba."comment",
+				mordba."status", mordba."mtime", mordba."editor", mordba."ctime"
+			FROM "mshop_order_base" AS mordba
+			
+			WHERE ( mordba."siteid" IN (4560) AND mordba."id" = 1985 )
+			
+			LIMIT 100 OFFSET 0
+		<message> 2013-12-20 15:51:07 7 MShop_Common_Manager_Abstract::_searchItems(0.65183639526367ms): SQL statement: 
+			SELECT mordbapr."id", mordbapr."baseid", mordbapr."siteid", mordbapr."ordprodid", mordbapr."type", mordbapr."prodid", mordbapr."prodcode",
+				mordbapr."suppliercode", mordbapr."name", mordbapr."mediaurl", mordbapr."quantity", mordbapr."price",
+				mordbapr."costs", mordbapr."rebate", mordbapr."taxrate", mordbapr."flags", mordbapr."status",
+				mordbapr."mtime", mordbapr."pos", mordbapr."editor", mordbapr."ctime"
+			FROM "mshop_order_base_product" AS mordbapr
+			
+			WHERE ( mordbapr."siteid" IN (4560) AND mordbapr."baseid" = 1985 )
+			
+			 ORDER BY mordbapr."pos" DESC 
+			LIMIT 0, 100
+		<message> 2013-12-20 15:51:07 7 MShop_Common_Manager_Abstract::_searchItems(0.72693824768066ms): SQL statement: 
+			SELECT mordbaprat."id", mordbaprat."siteid", mordbaprat."ordprodid", mordbaprat."type", mordbaprat."code",
+				mordbaprat."value", mordbaprat."name", mordbaprat."mtime", mordbaprat."editor", mordbaprat."ctime"
+			FROM "mshop_order_base_product_attr" AS mordbaprat
+			
+			WHERE ( mordbaprat."siteid" IN (4560) AND mordbaprat."ordprodid" IN (5937,5936,5935,5934) )
+			 ORDER BY mordbaprat."code" ASC 
+			LIMIT 2147483647 OFFSET 0
+		<message> 2013-12-20 15:51:07 7 MShop_Common_Manager_Abstract::_searchItems(0.67019462585449ms): SQL statement: 
+			SELECT mordbaprat."id", mordbaprat."siteid", mordbaprat."ordprodid", mordbaprat."type", mordbaprat."code",
+				mordbaprat."value", mordbaprat."name", mordbaprat."mtime", mordbaprat."editor", mordbaprat."ctime"
+			FROM "mshop_order_base_product_attr" AS mordbaprat
+			
+			WHERE ( mordbaprat."siteid" IN (4560) AND mordbaprat."ordprodid" IN (5937,5936,5935,5934) )
+			
+			LIMIT 100 OFFSET 0
+		<message> 2013-12-20 15:51:07 7 MShop_Common_Manager_Abstract::_searchItems(0.52285194396973ms): SQL statement: 
+			SELECT mordbaad."id", mordbaad."baseid", mordbaad."siteid", mordbaad."addrid", mordbaad."type", mordbaad."company", mordbaad."salutation",
+				mordbaad."title", mordbaad."firstname", mordbaad."lastname", mordbaad."address1", mordbaad."address2", mordbaad."address3",
+				mordbaad."postal", mordbaad."city", mordbaad."state", mordbaad."countryid", mordbaad."langid", mordbaad."telephone",
+				mordbaad."email", mordbaad."telefax", mordbaad."website", mordbaad."flag", mordbaad."mtime", mordbaad."editor", mordbaad."ctime"
+			FROM "mshop_order_base_address" AS mordbaad
+			
+			WHERE ( mordbaad."siteid" IN (4560) AND mordbaad."baseid" = 1985 )
+			
+			LIMIT 100 OFFSET 0
+		<message> 2013-12-20 15:51:07 7 MShop_Common_Manager_Abstract::_searchItems(0.55193901062012ms): SQL statement: 
+			SELECT DISTINCT mordbase."id", mordbase."baseid", mordbase."siteid", mordbase."servid",
+				mordbase."type", mordbase."code", mordbase."name", mordbase."mediaurl", mordbase."price",
+				mordbase."costs", mordbase."rebate", mordbase."taxrate",
+				mordbase."mtime", mordbase."editor", mordbase."ctime"
+			FROM "mshop_order_base_service" AS mordbase
+			
+			WHERE ( mordbase."siteid" IN (4560) AND mordbase."baseid" = 1985 )
+			
+			LIMIT 100 OFFSET 0
+		<message> 2013-12-20 15:51:07 7 MShop_Common_Manager_Abstract::_searchItems(0.56219100952148ms): SQL statement: 
+			SELECT mordbaseat."id", mordbaseat."siteid", mordbaseat."ordservid", mordbaseat."type", mordbaseat."code",
+			mordbaseat."value", mordbaseat."name", mordbaseat."mtime", mordbaseat."ctime", mordbaseat."editor"
+			FROM "mshop_order_base_service_attr" AS mordbaseat
+			
+			WHERE ( mordbaseat."siteid" IN (4560) AND mordbaseat."ordservid" IN (2658,2657) )
+			 ORDER BY mordbaseat."code" ASC 
+			LIMIT 2147483647 OFFSET 0
+		<message> 2013-12-20 15:52:19 7 MShop_Locale_Manager_Site_Default::_getSearchResults: SQL statement: 
+			SELECT mlocsi."id", mlocsi."parentid", mlocsi."code", mlocsi."label", mlocsi."config", mlocsi."status",
+				mlocsi."editor", mlocsi."mtime", mlocsi."ctime"
+			FROM "mshop_locale_site" AS mlocsi
+			WHERE mlocsi."code" = 'unittest'
+			ORDER BY mlocsi."id" ASC
+			LIMIT 100 OFFSET 0
+		<message> 2013-12-20 15:52:19 7 MShop_Locale_Manager_Default::_getSearchResults: SQL statement: 
+			SELECT DISTINCT mloc."id", mloc."siteid", mloc."langid", mloc."currencyid", mloc."pos", mloc."status",
+				mloc."mtime", mloc."editor", mloc."ctime"
+			FROM "mshop_locale" AS mloc
+			LEFT JOIN "mshop_locale_site" AS mlocsi ON (mloc."siteid" = mlocsi."id")
+			LEFT JOIN "mshop_locale_language" AS mlocla ON (mloc."langid" = mlocla."id")
+			LEFT JOIN "mshop_locale_currency" AS mloccu ON (mloc."currencyid" = mloccu."id")
+			WHERE ( mloc."siteid" IN (4560) AND mloc."langid" = 'en' AND mloc."currencyid" = '' AND 1 = 1 )
+			ORDER BY mloc."id" ASC
+			LIMIT 100 OFFSET 0
+		<message> 2013-12-20 15:52:19 7 MShop_Locale_Manager_Default::_getSearchResults: SQL statement: 
+			SELECT DISTINCT mloc."id", mloc."siteid", mloc."langid", mloc."currencyid", mloc."pos", mloc."status",
+				mloc."mtime", mloc."editor", mloc."ctime"
+			FROM "mshop_locale" AS mloc
+			LEFT JOIN "mshop_locale_site" AS mlocsi ON (mloc."siteid" = mlocsi."id")
+			LEFT JOIN "mshop_locale_language" AS mlocla ON (mloc."langid" = mlocla."id")
+			LEFT JOIN "mshop_locale_currency" AS mloccu ON (mloc."currencyid" = mloccu."id")
+			WHERE ( mloc."siteid" IN (4560) AND 1 = 1 )
+			ORDER BY mloc."pos" ASC
+			LIMIT 100 OFFSET 0
+		<message> 2013-12-20 15:52:19 7 MShop_Common_Manager_Abstract::_searchItems(0.3359317779541ms): SQL statement: 
+			SELECT DISTINCT mord."id", mord."baseid", mord."siteid", mord."type", mord."datepayment", mord."datedelivery",
+				mord."statuspayment", mord."statusdelivery", mord."relatedid", mord."ctime", mord."mtime", mord."editor"
+			FROM "mshop_order" AS mord
+			
+			WHERE ( mord."siteid" IN (4560) AND mord."datepayment" = '2008-02-15 12:34:56' )
+			
+			LIMIT 100 OFFSET 0
+		<message> 2013-12-20 15:52:19 7 MShop_Common_Manager_Abstract::_searchItems(0.27608871459961ms): SQL statement: 
+			SELECT DISTINCT mordba."id", mordba."siteid", mordba."sitecode", mordba."customerid", mordba."langid",
+				mordba."currencyid", mordba."price", mordba."costs", mordba."rebate", mordba."comment",
+				mordba."status", mordba."mtime", mordba."editor", mordba."ctime"
+			FROM "mshop_order_base" AS mordba
+			
+			WHERE ( mordba."siteid" IN (4560) AND mordba."id" = 1985 )
+			
+			LIMIT 100 OFFSET 0
+		<message> 2013-12-20 15:52:19 7 MShop_Common_Manager_Abstract::_searchItems(0.3209114074707ms): SQL statement: 
+			SELECT mordbapr."id", mordbapr."baseid", mordbapr."siteid", mordbapr."ordprodid", mordbapr."type", mordbapr."prodid", mordbapr."prodcode",
+				mordbapr."suppliercode", mordbapr."name", mordbapr."mediaurl", mordbapr."quantity", mordbapr."price",
+				mordbapr."costs", mordbapr."rebate", mordbapr."taxrate", mordbapr."flags", mordbapr."status",
+				mordbapr."mtime", mordbapr."pos", mordbapr."editor", mordbapr."ctime"
+			FROM "mshop_order_base_product" AS mordbapr
+			
+			WHERE ( mordbapr."siteid" IN (4560) AND mordbapr."baseid" = 1985 )
+			
+			 ORDER BY mordbapr."pos" DESC 
+			LIMIT 0, 100
+		<message> 2013-12-20 15:52:19 7 MShop_Common_Manager_Abstract::_searchItems(0.21600723266602ms): SQL statement: 
+			SELECT mordbaprat."id", mordbaprat."siteid", mordbaprat."ordprodid", mordbaprat."type", mordbaprat."code",
+				mordbaprat."value", mordbaprat."name", mordbaprat."mtime", mordbaprat."editor", mordbaprat."ctime"
+			FROM "mshop_order_base_product_attr" AS mordbaprat
+			
+			WHERE ( mordbaprat."siteid" IN (4560) AND mordbaprat."ordprodid" IN (5937,5936,5935,5934) )
+			 ORDER BY mordbaprat."code" ASC 
+			LIMIT 2147483647 OFFSET 0
+		<message> 2013-12-20 15:52:19 7 MShop_Common_Manager_Abstract::_searchItems(0.22482872009277ms): SQL statement: 
+			SELECT mordbaprat."id", mordbaprat."siteid", mordbaprat."ordprodid", mordbaprat."type", mordbaprat."code",
+				mordbaprat."value", mordbaprat."name", mordbaprat."mtime", mordbaprat."editor", mordbaprat."ctime"
+			FROM "mshop_order_base_product_attr" AS mordbaprat
+			
+			WHERE ( mordbaprat."siteid" IN (4560) AND mordbaprat."ordprodid" IN (5937,5936,5935,5934) )
+			
+			LIMIT 100 OFFSET 0
+		<message> 2013-12-20 15:52:19 7 MShop_Common_Manager_Abstract::_searchItems(0.23221969604492ms): SQL statement: 
+			SELECT mordbaad."id", mordbaad."baseid", mordbaad."siteid", mordbaad."addrid", mordbaad."type", mordbaad."company", mordbaad."salutation",
+				mordbaad."title", mordbaad."firstname", mordbaad."lastname", mordbaad."address1", mordbaad."address2", mordbaad."address3",
+				mordbaad."postal", mordbaad."city", mordbaad."state", mordbaad."countryid", mordbaad."langid", mordbaad."telephone",
+				mordbaad."email", mordbaad."telefax", mordbaad."website", mordbaad."flag", mordbaad."mtime", mordbaad."editor", mordbaad."ctime"
+			FROM "mshop_order_base_address" AS mordbaad
+			
+			WHERE ( mordbaad."siteid" IN (4560) AND mordbaad."baseid" = 1985 )
+			
+			LIMIT 100 OFFSET 0
+		<message> 2013-12-20 15:52:19 7 MShop_Common_Manager_Abstract::_searchItems(0.25010108947754ms): SQL statement: 
+			SELECT DISTINCT mordbase."id", mordbase."baseid", mordbase."siteid", mordbase."servid",
+				mordbase."type", mordbase."code", mordbase."name", mordbase."mediaurl", mordbase."price",
+				mordbase."costs", mordbase."rebate", mordbase."taxrate",
+				mordbase."mtime", mordbase."editor", mordbase."ctime"
+			FROM "mshop_order_base_service" AS mordbase
+			
+			WHERE ( mordbase."siteid" IN (4560) AND mordbase."baseid" = 1985 )
+			
+			LIMIT 100 OFFSET 0
+		<message> 2013-12-20 15:52:19 7 MShop_Common_Manager_Abstract::_searchItems(0.20599365234375ms): SQL statement: 
+			SELECT mordbaseat."id", mordbaseat."siteid", mordbaseat."ordservid", mordbaseat."type", mordbaseat."code",
+			mordbaseat."value", mordbaseat."name", mordbaseat."mtime", mordbaseat."ctime", mordbaseat."editor"
+			FROM "mshop_order_base_service_attr" AS mordbaseat
+			
+			WHERE ( mordbaseat."siteid" IN (4560) AND mordbaseat."ordservid" IN (2658,2657) )
+			 ORDER BY mordbaseat."code" ASC 
+			LIMIT 2147483647 OFFSET 0
+		

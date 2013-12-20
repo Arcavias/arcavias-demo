@@ -4,6 +4,7 @@
 
 	<property name="coredir" value="${project.basedir}/vendor/arcavias/arcavias-core" override="true" />
 
+
 	<target name="database" description="Creates the database configuration">
 		<echo msg="Creating database configuration" />
 		<input propertyName="dbadapter" promptChar="   :" defaultValue="mysql" >Database type</input>
@@ -12,7 +13,7 @@
 		<input propertyName="dbname" promptChar=":" defaultValue="arcavias" >Database name</input>
 		<input propertyName="dbuser" promptChar="        :" defaultValue="root" >User name</input>
 		<input propertyName="dbpass" promptChar="             :" defaultValue="" >Password</input>
-		<echo file="config/resource.php">&lt;?php
+		<echo file="${project.basedir}/config/resource.php">&lt;?php
 return array(
 	'db' => array(
 		'adapter' => '${dbadapter}',
@@ -31,6 +32,7 @@ return array(
 );</echo>
 	</target>
 
+
 	<target name="email" description="Creates the e-mail configuration">
 		<echo msg="Creating e-mail configuration" />
 		<input propertyname="mailfrom" promptChar="      :" defaultValue="" >Sender e-mail</input>
@@ -40,7 +42,7 @@ return array(
 		<input propertyname="mailpass" promptChar="              :" >Password</input>
 		<input propertyname="mailssl" promptChar=":" defaultValue="" validArgs=",ssl,tls" >Security </input>
 		<input propertyname="mailauth" promptChar=":" defaultValue="" validArgs=",plain,login,crammd5 ">Auth type </input>
-		<echo file="config/client.php">&lt;?php
+		<echo file="${project.basedir}/config/client.php">&lt;?php
 return array(
 	'html' => array(
 		'email' => array(
@@ -58,20 +60,23 @@ return array(
 );</echo>
 	</target>
 
+
 	<target name="composer" description="Installs the required packages via composer">
 		<echo msg="Installing required packages via composer" />
-		<exec command="composer install" checkreturn="true" logoutput="true" />
+		<exec command="composer -d ${project.basedir} install" checkreturn="true" logoutput="true" />
 	</target>
+
 
 	<target name="permission" description="Sets the necessary permissions">
-		<mkdir dir="images/files"/>
-		<mkdir dir="images/preview"/>
+		<mkdir dir="${project.basedir}/images/files"/>
+		<mkdir dir="${project.basedir}/images/preview"/>
 
 		<chmod mode="0777">
-			<fileset dir="images/files" />
-			<fileset dir="images/preview" />
+			<fileset dir="${project.basedir}/images/files" />
+			<fileset dir="${project.basedir}/images/preview" />
 		</chmod>
 	</target>
+
 
 	<target name="setuptest" description="Sets up database incl. unit test data">
 		<echo msg="Setting up test database" />
@@ -82,6 +87,26 @@ return array(
 		<echo msg="Setting up performance data" />
 		<exec command="php ${coredir}/setup.php --config=${project.basedir}/config --ext=${project.basedir}/ext unitperf" checkreturn="true" logoutput="true"/>
 	</target>
+	
+	
+	<target name="test" description="Executes all tests">
+		<echo msg="Executing tests" />
+		<if>
+			<not><available file="${project.basedir}/tests/config/tests.php" type="file" property="testconfig" /></not>
+			<then>
+				<input propertyname="destaddr" promptChar=":" >Destination e-mail address</input>
+				<echo file="${project.basedir}/tests/config/tests.php">&lt;?php
+return array(
+	'email' => array(
+		'destaddr' => '${destaddr}',
+	)
+);</echo>
+			</then>
+		</if>
+		<exec command="phpunit -d memory_limit=-1 --include-path ${project.basedir}/zendlib --configuration=phpunit.xml"
+			  dir="${project.basedir}/tests" checkreturn="true" logoutput="true" />
+	</target>
+
 
 	<target name="install" depends="database,email,composer,permission,setuptest" description="Installs the Arcavias demo application with unit test data" />
 

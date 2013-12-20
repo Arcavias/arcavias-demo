@@ -79,9 +79,8 @@ class Jobs
 		$zServer = $config->get( 'client/html/email/server/host', 'localhost' );
 
 		Zend_Mail::setDefaultTransport( new Zend_Mail_Transport_Smtp( $zServer, $zOptions ) );
-		$zMail = new Zend_Mail( 'UTF-8' );
 
-		$mail = new MW_Mail_Zend( $zMail );
+		$mail = new MW_Mail_Zend( new Zend_Mail( 'UTF-8' ) );
 		$context->setMail( $mail );
 
 
