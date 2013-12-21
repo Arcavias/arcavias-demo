@@ -69,13 +69,35 @@ class Jobs
 		$logger = new MAdmin_Log_Manager_Default( $context );
 		$context->setLogger( $logger );
 
+
+		$zOptions = array();
+		if( ( $v = $config->get( 'client/html/email/server/port' ) ) != '' ) { $zOptions['port'] = $v; }
+		if( ( $v = $config->get( 'client/html/email/server/ssl' ) ) != '' ) { $zOptions['ssl'] = $v; }
+		if( ( $v = $config->get( 'client/html/email/server/auth' ) ) != '' ) { $zOptions['auth'] = $v; }
+		if( ( $v = $config->get( 'client/html/email/server/username' ) ) != '' ) { $zOptions['username'] = $v; }
+		if( ( $v = $config->get( 'client/html/email/server/password' ) ) != '' ) { $zOptions['password'] = $v; }
+		$zServer = $config->get( 'client/html/email/server/host', 'localhost' );
+
+		Zend_Mail::setDefaultTransport( new Zend_Mail_Transport_Smtp( $zServer, $zOptions ) );
+
 		$mail = new MW_Mail_Zend( new Zend_Mail( 'UTF-8' ) );
 		$context->setMail( $mail );
 
+
+		$i18nList = array();
 		$i18nPaths = $this->_arcavias->getI18nPaths();
-		$i18n = new MW_Translation_Zend( $i18nPaths, 'gettext', 'en', array( 'disableNotices' => true ) );
-		$i18n = new MW_Translation_Decorator_Memory( $i18n );
-		$context->setI18n( array( 'en' => $i18n ) );
+
+		$langManager = MShop_Locale_Manager_Factory::createManager( $context )->getSubManager( 'language' );
+
+		foreach( $langManager->searchItems( $langManager->createSearch( true ) ) as $id => $langItem )
+		{
+			$i18n = new MW_Translation_Zend( $i18nPaths, 'gettext', $id, array( 'disableNotices' => true ) );
+			$i18n = new MW_Translation_Decorator_Memory( $i18n );
+			$i18nList[$id] = $i18n;
+		}
+
+		$context->setI18n( $i18nList );
+
 
 		$context->setView( $this->_createView( $config ) );
 

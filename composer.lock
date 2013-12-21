@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Arcavias/arcavias-core.git",
-                "reference": "1a5cc4a7b433accf65587e0fba04b0fcbb9056bc"
+                "reference": "238f9630360e1adc347266dc3c3e136dacf927b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Arcavias/arcavias-core/zipball/1a5cc4a7b433accf65587e0fba04b0fcbb9056bc",
-                "reference": "1a5cc4a7b433accf65587e0fba04b0fcbb9056bc",
+                "url": "https://api.github.com/repos/Arcavias/arcavias-core/zipball/238f9630360e1adc347266dc3c3e136dacf927b0",
+                "reference": "238f9630360e1adc347266dc3c3e136dacf927b0",
                 "shasum": ""
             },
             "require": {
@@ -69,7 +69,7 @@
                 "portal",
                 "shop"
             ],
-            "time": "2013-12-01 13:05:34"
+            "time": "2013-12-20 14:23:52"
         },
         {
             "name": "arcavias/ext-zend",
@@ -77,12 +77,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Arcavias/ext-zend.git",
-                "reference": "2bf9f47188aba1c3a0a9eacc6ee78106e7af7592"
+                "reference": "6aabf22839f213f14cafba7ce0383cfa4f9caddf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Arcavias/ext-zend/zipball/2bf9f47188aba1c3a0a9eacc6ee78106e7af7592",
-                "reference": "2bf9f47188aba1c3a0a9eacc6ee78106e7af7592",
+                "url": "https://api.github.com/repos/Arcavias/ext-zend/zipball/6aabf22839f213f14cafba7ce0383cfa4f9caddf",
+                "reference": "6aabf22839f213f14cafba7ce0383cfa4f9caddf",
                 "shasum": ""
             },
             "require": {
@@ -103,7 +103,7 @@
             ],
             "description": "Arcavias extension for utilizing Zend Framework components",
             "homepage": "http://www.arcavias.com/en",
-            "time": "2013-11-29 13:54:52"
+            "time": "2013-12-16 17:37:36"
         },
         {
             "name": "arcavias/extension-installer",
