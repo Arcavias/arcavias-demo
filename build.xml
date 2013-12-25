@@ -61,9 +61,15 @@ return array(
 	</target>
 
 
+	<target name="base" description="Updates the demo code base">
+		<echo msg="Updating the demo code base" />
+		<exec command="git pull https://github.com/Arcavias/arcavias-typo3.git" checkreturn="true" logoutput="true" />
+	</target>
+
+
 	<target name="composer" description="Installs the required packages via composer">
 		<echo msg="Installing required packages via composer" />
-		<exec command="composer -d ${project.basedir} install" checkreturn="true" logoutput="true" />
+		<exec command="composer install --working-dir ${project.basedir}" checkreturn="true" logoutput="true" />
 	</target>
 
 
@@ -71,21 +77,24 @@ return array(
 		<mkdir dir="${project.basedir}/images/files"/>
 		<mkdir dir="${project.basedir}/images/preview"/>
 
-		<chmod mode="0777">
+		<chmod mode="0777" failonerror="false" >
 			<fileset dir="${project.basedir}/images/files" />
 			<fileset dir="${project.basedir}/images/preview" />
 		</chmod>
 	</target>
 
 
-	<target name="setuptest" description="Sets up database incl. unit test data">
+	<target name="setup" description="Sets up database incl. unit test and performance data">
 		<echo msg="Setting up test database" />
 		<exec command="php ${coredir}/setup.php --config=${project.basedir}/config --ext=${project.basedir}/ext unittest" checkreturn="true" logoutput="true"/>
-	</target>
-
-	<target name="setupperf" description="Sets up database incl. performance test data">
-		<echo msg="Setting up performance data" />
-		<exec command="php ${coredir}/setup.php --config=${project.basedir}/config --ext=${project.basedir}/ext unitperf" checkreturn="true" logoutput="true"/>
+		<input propertyname="perfdata" promptChar=":" defaultValue="Yes" validArgs="YES,no" >Add performance data (takes several minutes) </input>
+		<if>
+			<equals arg1="${perfdata}" arg2="YES" />
+			<then>
+				<echo msg="Setting up performance data" />
+				<exec command="php ${coredir}/setup.php --config=${project.basedir}/config --ext=${project.basedir}/ext unitperf" checkreturn="true" logoutput="true"/>
+			</then>
+		</if>
 	</target>
 	
 	
@@ -108,6 +117,7 @@ return array(
 	</target>
 
 
-	<target name="install" depends="database,email,composer,permission,setuptest" description="Installs the Arcavias demo application with unit test data" />
+	<target name="install" depends="database,email,composer,permission,setup" description="Installs the Arcavias demo application with unit test data" />
+	<target name="update" depends="base,composer,setup" description="Updatess the Arcavias demo application including the unit test data" />
 
 </project>
