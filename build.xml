@@ -63,7 +63,7 @@ return array(
 
 	<target name="base" description="Updates the demo code base">
 		<echo msg="Updating the demo code base" />
-		<exec command="git pull https://github.com/Arcavias/arcavias-typo3.git" checkreturn="true" logoutput="true" />
+		<exec command="git pull https://github.com/Arcavias/arcavias-demo.git" checkreturn="true" logoutput="true" />
 	</target>
 
 
