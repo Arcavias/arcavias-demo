@@ -61,9 +61,10 @@ return array(
 	</target>
 
 
-	<target name="base" description="Updates the demo code base">
+	<target name="code" description="Updates the demo code base">
 		<echo msg="Updating the demo code base" />
 		<exec command="git pull https://github.com/Arcavias/arcavias-demo.git" checkreturn="true" logoutput="true" />
+		<exec command="composer update --working-dir ${project.basedir}" checkreturn="true" logoutput="true" />
 	</target>
 
 
@@ -118,6 +119,6 @@ return array(
 
 
 	<target name="install" depends="database,email,composer,permission,setup" description="Installs the Arcavias demo application with unit test data" />
-	<target name="update" depends="base,composer,setup" description="Updatess the Arcavias demo application including the unit test data" />
+	<target name="update" depends="code,setup" description="Updatess the Arcavias demo application including the unit test data" />
 
 </project>
