@@ -118,6 +118,15 @@ return array(
 	</target>
 
 
+	<target name="deploy" description="Creates a download package" depends="composer">
+		<propertyprompt propertyName="version" promptText="Enter release version" promptCharacter=":" useExistingValue="true"/>
+		<exec command="tar -c --bzip2 --exclude-from=.exclude -f ../arcavias-demo_${version}.tar.bz2 ."
+			checkreturn="true" logoutput="true"/>
+		<filehash file="../arcavias-demo_${version}.tar.bz2" hashtype="1" />
+		<echo msg="SHA1 hash value: ${filehashvalue}" />
+	</target>
+
+
 	<target name="install" depends="database,email,composer,permission,setup" description="Installs the Arcavias demo application with unit test data" />
 	<target name="update" depends="code,setup" description="Updatess the Arcavias demo application including the unit test data" />
 
