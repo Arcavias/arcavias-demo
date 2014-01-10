@@ -1,6 +1,7 @@
+.git
+.gitignore
 ./.exclude
-./.git
-./.gitignore
 ./.travis.yml
 ./.tx
 ./config/resource.php
+./images/*

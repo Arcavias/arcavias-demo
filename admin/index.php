@@ -31,13 +31,6 @@ try
 	$searchSchema = $jsonrpc->getJsonSearchSchemas();
 	$smd = $jsonrpc->getJsonSmd( 'jsonrpc.php' );
 	$config = $init->getJsonClientConfig();
-}
-catch( Exception $e )
-{
-	echo $e->getMessage();
-	echo $e->getTraceAsString();
-	exit();
-}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -70,5 +63,14 @@ catch( Exception $e )
 	<noscript>
 		<p>You need to enable javascript!</p>
 	</noscript>
+<?php
+}
+catch( Exception $e )
+{
+	echo '<p>Please make sure you\'ve executed <strong>phing install</strong> on the command line</p>';
+	echo '<p>' . $e->getMessage() . '</p>';
+	echo '<pre>' . $e->getTraceAsString() . '</pre>';
+}
+?>
 </body>
 </html>
