@@ -165,6 +165,12 @@ abstract class Application_Controller_Action_Abstract extends Zend_Controller_Ac
 		}
 
 		$this->view->params = $params;
+
+
+		$this->getResponse()
+			->setHeader( 'Expires', date( 'r', time() + 60 ), true )
+			->setHeader( 'Cache-Control', 'max-age=60', true )
+			->setHeader( 'Pragma', '', true );
 	}
 
 
