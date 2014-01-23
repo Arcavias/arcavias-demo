@@ -181,9 +181,12 @@ ul.menu ul li {
 }
 
 #headerSearch {
-	height: 15px; 
 	float: right;
-	padding: 4px;
+	padding: 0 1em;
+}
+
+#headerSearch button.filter {
+	display: none;
 }
 
 #headerBasket {
@@ -246,7 +249,7 @@ ul.menu ul li {
 
 /* ----- Content ----- */
 #content {
-	padding: 20px 0px 20px 0px; 
+	padding: 10px 0px; 
 	margin: 0px 8px 0px 8px;
 	background-color: #FFFFFF;
 	border-radius: 15px 15px 0 0;
@@ -256,10 +259,14 @@ ul.menu ul li {
 	margin-top: 230px;
 }
 
+#content .catalog-filter-search {
+	display: none;
+}
+
 #contentLeft {
 	min-width: 17%; 
 	float: left; 
-	padding: 0px 1.2%; 
+	padding: 0px 1%; 
 	background: #FFFFFF;
 }
 
@@ -465,9 +472,6 @@ ul.menu ul li {
 	#headerLogo {
 		display: none;
 	}
-	#headerMiddle {
-		width: 65%;
-	}
 	#headerSearch {
 		padding: 5px 0 0;
 	}
@@ -476,9 +480,6 @@ ul.menu ul li {
 @media only screen and (max-width: 820px) and (orientation: landscape) {
 	#headerLogo {
 		display: none;
-	}
-	#headerMiddle {
-		width: 65%;
 	}
 	#headerSearch {
 		padding: 5px 0 0;

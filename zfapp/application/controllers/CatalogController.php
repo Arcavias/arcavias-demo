@@ -44,11 +44,21 @@ class CatalogController extends Application_Controller_Action_Abstract
 		$context = Zend_Registry::get( 'ctx' );
 		$templatePaths = $arcavias->getCustomPaths( 'client/html' );
 
+		$conf = array( 'client' => array( 'html' => array(
+			'catalog' => array( 'filter' => array(
+				'default' => array( 'subparts' => array( 'search' ) )
+			) )
+		) ) );
+
+		$localContext = clone $context;
+		$localConfig = new MW_Config_Decorator_Memory( $localContext->getConfig(), $conf );
+		$localContext->setConfig( $localConfig );
+
+		$this->view->searchfilter = Client_Html_Catalog_Filter_Factory::createClient( $localContext, $templatePaths );
+		$this->view->searchfilter->setView( $this->_createView() );
+
 		$this->view->filter = Client_Html_Catalog_Filter_Factory::createClient( $context, $templatePaths );
 		$this->view->filter->setView( $this->_createView() );
-
-		$this->view->searchfilter = $this->view->filter->getSubClient( 'search' );
-		$this->view->searchfilter->setView( $this->_createView() );
 
 		$this->view->filter->process();
 
@@ -81,11 +91,21 @@ class CatalogController extends Application_Controller_Action_Abstract
 		$context = Zend_Registry::get( 'ctx' );
 		$templatePaths = $arcavias->getCustomPaths( 'client/html' );
 
+		$conf = array( 'client' => array( 'html' => array(
+			'catalog' => array( 'filter' => array(
+				'default' => array( 'subparts' => array( 'search' ) )
+			) )
+		) ) );
+
+		$localContext = clone $context;
+		$localConfig = new MW_Config_Decorator_Memory( $localContext->getConfig(), $conf );
+		$localContext->setConfig( $localConfig );
+
+		$this->view->searchfilter = Client_Html_Catalog_Filter_Factory::createClient( $localContext, $templatePaths );
+		$this->view->searchfilter->setView( $this->_createView() );
+
 		$this->view->filter = Client_Html_Catalog_Filter_Factory::createClient( $context, $templatePaths );
 		$this->view->filter->setView( $this->_createView() );
-
-		$this->view->searchfilter = $this->view->filter->getSubClient( 'search' );
-		$this->view->searchfilter->setView( $this->_createView() );
 
 		$this->view->filter->process();
 
@@ -124,6 +144,27 @@ class CatalogController extends Application_Controller_Action_Abstract
 		$this->view->stock = Client_Html_Catalog_Stock_Factory::createClient( $context, $templatePaths );
 		$this->view->stock->setView( $this->_createView() );
 		$this->_helper->layout()->disableLayout();
+
+		$this->getResponse()->setHeader( 'Content-Type', 'text/javascript', true );
+
+		$msg = 'Stock total time: ' . ( ( microtime( true ) - $startaction ) * 1000 ) . 'ms';
+		$context->getLogger()->log( $msg, MW_Logger_Abstract::INFO, 'performance' );
+	}
+
+
+	public function countAction()
+	{
+		$startaction = microtime( true );
+
+		$arcavias = $this->_getArcavias();
+		$context = Zend_Registry::get( 'ctx' );
+		$templatePaths = $arcavias->getCustomPaths( 'client/html' );
+
+		$this->view->count = Client_Html_Catalog_Count_Factory::createClient( $context, $templatePaths );
+		$this->view->count->setView( $this->_createView() );
+		$this->_helper->layout()->disableLayout();
+
+		$this->getResponse()->setHeader( 'Content-Type', 'text/javascript', true );
 
 		$msg = 'Stock total time: ' . ( ( microtime( true ) - $startaction ) * 1000 ) . 'ms';
 		$context->getLogger()->log( $msg, MW_Logger_Abstract::INFO, 'performance' );
