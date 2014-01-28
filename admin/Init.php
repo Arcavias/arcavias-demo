@@ -24,7 +24,8 @@ class Init
 
 	public function getJsonClientConfig()
 	{
-		return json_encode( array( 'client' => $this->_context->getConfig()->get( 'client', array() ) ) );
+		$config = $this->_context->getConfig()->get( 'client/extjs', array() );
+		return json_encode( array( 'client' => array( 'extjs' => $config ) ), JSON_FORCE_OBJECT );
 	}
 
 
