@@ -13,9 +13,9 @@
 	},
 	"require": {
 		"php": ">=5.2.0",
-		"arcavias/arcavias-core": "2014.01.*@dev",
+		"arcavias/arcavias-core": "dev-master",
 		"arcavias/extension-installer": "dev-master",
-		"arcavias/ext-zend": "2014.01.*@dev"
+		"arcavias/ext-zend": "dev-master"
 	},
 	"autoload": {
 		"psr-0": {
