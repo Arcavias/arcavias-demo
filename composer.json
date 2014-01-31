@@ -27,5 +27,6 @@
 			"zendlib",
 			"admin"
 		]
-	}
+	},
+	"include-path": ["zendlib/"]
 }
