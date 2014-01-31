@@ -24,7 +24,22 @@ class Init
 
 	public function getJsonClientConfig()
 	{
-		return json_encode( array( 'client' => $this->_context->getConfig()->get( 'client', array() ) ) );
+		$config = $this->_context->getConfig()->get( 'client/extjs', array() );
+		return json_encode( array( 'client' => array( 'extjs' => $config ) ), JSON_FORCE_OBJECT );
+	}
+
+
+	public function getJsonClientI18n( $locale )
+	{
+		$i18nPaths = $this->_arcavias->getI18nPaths();
+		$i18n = new MW_Translation_Zend( $i18nPaths, 'gettext', $locale, array('disableNotices'=>true) );
+
+		$content = array(
+			'client/extjs' => $i18n->getAll( 'client/extjs' ),
+			'client/extjs/ext' => $i18n->getAll( 'client/extjs/ext' ),
+		);
+
+		return json_encode( $content, JSON_FORCE_OBJECT );
 	}
 
 
@@ -92,11 +107,11 @@ class Init
 	}
 
 
-	protected function _createContext( array $conf )
+	protected function _createContext( array $confPaths )
 	{
 		$context = new MShop_Context_Item_Default();
 
-		$config = new MW_Config_Array( array(), $conf );
+		$config = new MW_Config_Array( array(), $confPaths );
 		if( function_exists( 'apc_store' ) === true ) {
 			$config = new MW_Config_Decorator_APC( $config );
 		}
@@ -106,11 +121,11 @@ class Init
 		$dbm = new MW_DB_Manager_PDO( $config );
 		$context->setDatabaseManager( $dbm );
 
-		$locale = MShop_Locale_Manager_Factory::createManager( $context )->createItem();
-		$context->setLocale( $locale );
-
 		$logger = new MAdmin_Log_Manager_Default( $context );
 		$context->setLogger( $logger );
+
+		$locale = MShop_Locale_Manager_Factory::createManager( $context )->createItem();
+		$context->setLocale( $locale );
 
 		$context->setEditor( 'tests' );
 

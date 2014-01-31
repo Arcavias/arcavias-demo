@@ -15,13 +15,10 @@ try
 
 	require $basedir . 'vendor/autoload.php';
 
-	$config = array(
-		$basedir. 'config',
-		$appdir . 'config',
-	);
+	$configPaths = array( $basedir. 'config', $appdir . 'config' );
 
 	$arcavias = new Arcavias( array( $basedir . 'ext' ) );
-	$init = new Init( $arcavias, $config );
+	$init = new Init( $arcavias, $configPaths );
 
 	$html = $init->getHtml( realpath($_SERVER['SCRIPT_FILENAME']), $_SERVER['SCRIPT_NAME'] );
 	$site = $init->getJsonSite( ( isset( $_REQUEST['site'] ) ? $_REQUEST['site'] : 'unittest' ) );
@@ -31,33 +28,44 @@ try
 	$searchSchema = $jsonrpc->getJsonSearchSchemas();
 	$smd = $jsonrpc->getJsonSmd( 'jsonrpc.php' );
 	$config = $init->getJsonClientConfig();
+	$i18n = $init->getJsonClientI18n( 'en' );
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Arcavias ExtJS Admin Interface</title>
-	<?php echo $html; ?>
 	<script type="text/javascript">
 
-		Ext.ns('MShop.config');
-		MShop.config.configuration = '<?php echo $config; ?>';
+		window.MShop = {
 
-		MShop.config.activeTab = <?php echo isset( $_REQUEST['tab'] ) ? $_REQUEST['tab'] : 0; ?>;
-		MShop.config.urlTemplate = "index.php?&site={site}&tab={tab}";
+			i18n: {
+				locale: 'en',
+				content: <?php echo $i18n; ?>
+			},
 
-		MShop.config.site = <?php echo $site; ?>;
+			config: {
+				data: <?php echo $config; ?>,
 
-		MShop.config.itemschema = <?php echo $itemSchema ?>;
+				site: <?php echo $site; ?>,
 
-		MShop.config.searchschema = <?php echo $searchSchema ?>;
+				itemschema: <?php echo $itemSchema ?>,
 
-		MShop.config.smd = <?php echo $smd ?>;
+				searchschema: <?php echo $searchSchema ?>,
 
-		Ext.ns('MShop.config.baseurl');
-		MShop.config.baseurl.content = '../images';
+				smd: <?php echo $smd ?>,
 
+				urlTemplate: "index.php?&site={site}&tab={tab}",
+
+				activeTab: <?php echo isset( $_REQUEST['tab'] ) ? $_REQUEST['tab'] : 0; ?>,
+
+				baseurl: {
+					content: '../images'
+				}
+			}
+		}
 	</script>
+	<?php echo $html; ?>
 </head>
 <body>
 	<noscript>

@@ -25,11 +25,8 @@ try
 {
 	require_once dirname( ZFAPP_ROOT ) . '/vendor/autoload.php';
 
-	spl_autoload_register( 'Arcavias::autoload' );
-
 	$includePaths = array(
 		ZFAPP_ROOT . DIRECTORY_SEPARATOR . 'library',
-		dirname( ZFAPP_ROOT ) . DIRECTORY_SEPARATOR . 'zendlib',
 		get_include_path(),
 	);
 	set_include_path( implode( PATH_SEPARATOR, $includePaths ) );
