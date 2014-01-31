@@ -28,7 +28,7 @@ try
 	$searchSchema = $jsonrpc->getJsonSearchSchemas();
 	$smd = $jsonrpc->getJsonSmd( 'jsonrpc.php' );
 	$config = $init->getJsonClientConfig();
-	$i18n = $init->getJsonClientI18n( 'de' );
+	$i18n = $init->getJsonClientI18n( 'en' );
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -40,7 +40,7 @@ try
 		window.MShop = {
 
 			i18n: {
-				locale: 'de',
+				locale: 'en',
 				content: <?php echo $i18n; ?>
 			},
 
