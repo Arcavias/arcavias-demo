@@ -259,12 +259,8 @@ ul.menu ul li {
 	margin-top: 230px;
 }
 
-#content .catalog-filter-search {
-	display: none;
-}
-
 #contentLeft {
-	min-width: 17%; 
+	width: 17%; 
 	float: left; 
 	padding: 0px 1%; 
 	background: #FFFFFF;
