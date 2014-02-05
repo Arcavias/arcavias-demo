@@ -5,6 +5,8 @@
  * @license LGPLv3, http://www.arcavias.com/en/license
  */
 
+header( 'Content-type: text/html; charset=UTF-8' );
+
 header( "Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'" );
 header( "X-Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'" );
 header( "X-Webkit-CSP: default-src 'self'; style-src 'self' 'unsafe-inline'" );

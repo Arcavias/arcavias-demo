@@ -41,13 +41,13 @@ abstract class Application_Controller_Action_Abstract extends Zend_Controller_Ac
 		if( isset( $this->config['content-baseurl'] ) ) {
 			$contentUrl = $this->config['content-baseurl'];
 		} else {
-			$contentUrl = dirname( dirname( $pathstart ) ) . '/images';
+			$contentUrl = rtrim( dirname( dirname( $pathstart ) ), '/' ) . '/images';
 		}
 
 		if( isset( $this->config['template-baseurl'] ) ) {
 			$templateUrl = $this->config['template-baseurl'];
 		} else {
-			$templateUrl = dirname( dirname( $pathstart ) ) . '/vendor/arcavias/arcavias-core/client/html/lib';
+			$templateUrl = rtrim( dirname( dirname( $pathstart ) ), '/' ) . '/vendor/arcavias/arcavias-core/client/html/lib';
 		}
 
 		$viewParts = array(
