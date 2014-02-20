@@ -44,6 +44,7 @@ class CatalogController extends Application_Controller_Action_Abstract
 		$context = Zend_Registry::get( 'ctx' );
 		$templatePaths = $arcavias->getCustomPaths( 'client/html' );
 
+
 		$conf = array( 'client' => array( 'html' => array(
 			'catalog' => array( 'filter' => array(
 				'default' => array( 'subparts' => array( 'search' ) )
@@ -57,10 +58,21 @@ class CatalogController extends Application_Controller_Action_Abstract
 		$this->view->searchfilter = Client_Html_Catalog_Filter_Factory::createClient( $localContext, $templatePaths );
 		$this->view->searchfilter->setView( $this->_createView() );
 
-		$this->view->filter = Client_Html_Catalog_Filter_Factory::createClient( $context, $templatePaths );
-		$this->view->filter->setView( $this->_createView() );
 
+		$conf = array( 'client' => array( 'html' => array(
+			'catalog' => array( 'filter' => array(
+				'default' => array( 'subparts' => array( 'tree', 'attribute' ) )
+			) )
+		) ) );
+
+		$localContext = clone $context;
+		$localConfig = new MW_Config_Decorator_Memory( $localContext->getConfig(), $conf );
+		$localContext->setConfig( $localConfig );
+
+		$this->view->filter = Client_Html_Catalog_Filter_Factory::createClient( $localContext, $templatePaths );
+		$this->view->filter->setView( $this->_createView() );
 		$this->view->filter->process();
+
 
 		$this->view->stage = Client_Html_Catalog_Stage_Factory::createClient( $context, $templatePaths );
 		$this->view->stage->setView( $this->_createView() );
@@ -91,6 +103,7 @@ class CatalogController extends Application_Controller_Action_Abstract
 		$context = Zend_Registry::get( 'ctx' );
 		$templatePaths = $arcavias->getCustomPaths( 'client/html' );
 
+
 		$conf = array( 'client' => array( 'html' => array(
 			'catalog' => array( 'filter' => array(
 				'default' => array( 'subparts' => array( 'search' ) )
@@ -101,12 +114,23 @@ class CatalogController extends Application_Controller_Action_Abstract
 		$localConfig = new MW_Config_Decorator_Memory( $localContext->getConfig(), $conf );
 		$localContext->setConfig( $localConfig );
 
+
 		$this->view->searchfilter = Client_Html_Catalog_Filter_Factory::createClient( $localContext, $templatePaths );
 		$this->view->searchfilter->setView( $this->_createView() );
 
-		$this->view->filter = Client_Html_Catalog_Filter_Factory::createClient( $context, $templatePaths );
-		$this->view->filter->setView( $this->_createView() );
 
+		$conf = array( 'client' => array( 'html' => array(
+			'catalog' => array( 'filter' => array(
+				'default' => array( 'subparts' => array( 'tree', 'attribute' ) )
+			) )
+		) ) );
+
+		$localContext = clone $context;
+		$localConfig = new MW_Config_Decorator_Memory( $localContext->getConfig(), $conf );
+		$localContext->setConfig( $localConfig );
+
+		$this->view->filter = Client_Html_Catalog_Filter_Factory::createClient( $localContext, $templatePaths );
+		$this->view->filter->setView( $this->_createView() );
 		$this->view->filter->process();
 
 		$this->view->stage = Client_Html_Catalog_Stage_Factory::createClient( $context, $templatePaths );
