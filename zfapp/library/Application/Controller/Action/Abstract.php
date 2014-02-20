@@ -189,7 +189,7 @@ abstract class Application_Controller_Action_Abstract extends Zend_Controller_Ac
 		$helper = new MW_View_Helper_Config_Default( $view, $context->getConfig() );
 		$view->addHelper( 'config', $helper );
 
-		$helper = new MW_View_Helper_Number_Default( $view, '.', '' );
+		$helper = new MW_View_Helper_Number_Default( $view, '.', ' ' );
 		$view->addHelper( 'number', $helper );
 
 		$helper = new MW_View_Helper_FormParam_Default( $view );
