@@ -93,7 +93,7 @@ return array(
 			<equals arg1="${perfdata}" arg2="YES" />
 			<then>
 				<echo msg="Setting up performance data" />
-				<exec command="php ${coredir}/setup.php --config=${project.basedir}/config --ext=${project.basedir}/ext unitperf" checkreturn="true" logoutput="true"/>
+				<exec command="php ${coredir}/setup.php --config=${project.basedir}/config --extdir=${project.basedir}/ext unitperf" checkreturn="true" logoutput="true"/>
 			</then>
 		</if>
 	</target>
