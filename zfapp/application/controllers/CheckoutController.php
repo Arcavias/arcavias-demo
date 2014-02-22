@@ -17,32 +17,26 @@ class CheckoutController extends Application_Controller_Action_Abstract
 	{
 		$startaction = microtime( true );
 
-
-		$arcavias = $this->_getArcavias();
-		$context = Zend_Registry::get( 'ctx' );
-		$templatePaths = $arcavias->getCustomPaths( 'client/html' );
-
-		$conf = array( 'client' => array( 'html' => array(
-			'catalog' => array( 'filter' => array(
-				'default' => array( 'subparts' => array( 'search' ) )
-			) )
-		) ) );
-
-		$localContext = clone $context;
-		$localConfig = new MW_Config_Decorator_Memory( $localContext->getConfig(), $conf );
-		$localContext->setConfig( $localConfig );
-
-		$this->view->searchfilter = Client_Html_Catalog_Filter_Factory::createClient( $localContext, $templatePaths );
-		$this->view->searchfilter->setView( $this->_createView() );
-
 		try
 		{
 			$arcavias = $this->_getArcavias();
+			$context = Zend_Registry::get( 'ctx' );
 			$templatePaths = $arcavias->getCustomPaths( 'client/html' );
 
-			$this->view->minibasket = Client_Html_Basket_Mini_Factory::createClient( $context, $templatePaths );
-			$this->view->minibasket->setView( $this->_createView() );
-			$this->view->minibasket->process();
+
+			$conf = array( 'client' => array( 'html' => array(
+				'catalog' => array( 'filter' => array(
+					'default' => array( 'subparts' => array( 'search' ) )
+				) )
+			) ) );
+
+			$localContext = clone $context;
+			$localConfig = new MW_Config_Decorator_Memory( $localContext->getConfig(), $conf );
+			$localContext->setConfig( $localConfig );
+
+			$this->view->searchfilter = Client_Html_Catalog_Filter_Factory::createClient( $localContext, $templatePaths );
+			$this->view->searchfilter->setView( $this->_createView() );
+
 
 			$client = Client_Html_Checkout_Standard_Factory::createClient( $context, $templatePaths );
 			$client->setView( $this->_createView() );
@@ -72,21 +66,27 @@ class CheckoutController extends Application_Controller_Action_Abstract
 	public function confirmAction()
 	{
 		$startaction = microtime( true );
-		$context = Zend_Registry::get( 'ctx' );
 
 		try
 		{
 			$arcavias = $this->_getArcavias();
+			$context = Zend_Registry::get( 'ctx' );
 			$templatePaths = $arcavias->getCustomPaths( 'client/html' );
 
-			$this->view->minibasket = Client_Html_Basket_Mini_Factory::createClient( $context, $templatePaths );
-			$this->view->minibasket->setView( $this->_createView() );
-			$this->view->minibasket->process();
 
-			$filter = Client_Html_Catalog_Filter_Factory::createClient( $context, $templatePaths );
-			$this->view->searchfilter = $filter->getSubClient( 'search' );
+			$conf = array( 'client' => array( 'html' => array(
+				'catalog' => array( 'filter' => array(
+					'default' => array( 'subparts' => array( 'search' ) )
+				) )
+			) ) );
+
+			$localContext = clone $context;
+			$localConfig = new MW_Config_Decorator_Memory( $localContext->getConfig(), $conf );
+			$localContext->setConfig( $localConfig );
+
+			$this->view->searchfilter = Client_Html_Catalog_Filter_Factory::createClient( $localContext, $templatePaths );
 			$this->view->searchfilter->setView( $this->_createView() );
-			$this->view->searchfilter->process();
+
 
 			$client = Client_Html_Checkout_Confirm_Factory::createClient( $context, $templatePaths );
 			$client->setView( $this->_createView() );
