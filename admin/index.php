@@ -30,7 +30,7 @@ try
 	$smd = $jsonrpc->getJsonSmd( 'jsonrpc.php' );
 	$config = $init->getJsonClientConfig();
 
-	$localeCode = (strlen($_REQUEST['locale']) == 2) ? $_REQUEST['locale'] : false;
+	$localeCode = preg_match( '/[a-z]{2}([A-Z]{2})?/', $REQUEST['locale'] ) ? $_REQUEST['locale'] : false;
 	$i18n = $init->getJsonClientI18n( $localeCode ? $localeCode : 'en' );
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
