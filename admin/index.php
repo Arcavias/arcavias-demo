@@ -29,7 +29,7 @@ try
 	$searchSchema = $jsonrpc->getJsonSearchSchemas();
 	$smd = $jsonrpc->getJsonSmd( 'jsonrpc.php' );
 	$config = $init->getJsonClientConfig();
-	$i18n = $init->getJsonClientI18n( 'en' );
+	$i18n = $init->getJsonClientI18n( isset( $_REQUEST['locale'] ) ? $_REQUEST['locale'] : 'en' );
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -55,7 +55,7 @@ try
 
 				smd: <?php echo $smd ?>,
 
-				urlTemplate: "index.php?&site={site}&tab={tab}",
+				urlTemplate: "index.php?&site={site}&tab={tab}&locale={locale}",
 
 				activeTab: <?php echo isset( $_REQUEST['tab'] ) ? $_REQUEST['tab'] : 0; ?>,
 
