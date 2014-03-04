@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "5ea6b46b220fd12d7b071d965f5532da",
+    "hash": "4cb64026ec6be50d6308912845823101",
     "packages": [
         {
             "name": "arcavias/arcavias-core",
-            "version": "dev-master",
+            "version": "2014.03.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Arcavias/arcavias-core.git",
-                "reference": "8419ffe7fe30bb6475dfbbf5305a3ad5e7d13f15"
+                "reference": "981bac9c3b8f3648ec160e282e5f6c256b7360d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Arcavias/arcavias-core/zipball/8419ffe7fe30bb6475dfbbf5305a3ad5e7d13f15",
-                "reference": "8419ffe7fe30bb6475dfbbf5305a3ad5e7d13f15",
+                "url": "https://api.github.com/repos/Arcavias/arcavias-core/zipball/981bac9c3b8f3648ec160e282e5f6c256b7360d6",
+                "reference": "981bac9c3b8f3648ec160e282e5f6c256b7360d6",
                 "shasum": ""
             },
             "require": {
@@ -72,20 +72,20 @@
                 "portal",
                 "shop"
             ],
-            "time": "2014-03-03 12:31:49"
+            "time": "2014-03-04 15:06:12"
         },
         {
             "name": "arcavias/ext-zend",
-            "version": "dev-master",
+            "version": "2014.03.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Arcavias/ext-zend.git",
-                "reference": "4e7820a75dd60df0b572c0a9fdb496cc9425a773"
+                "reference": "b7b8f170f2c0d7f110439ac60381d9ab89420c5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Arcavias/ext-zend/zipball/4e7820a75dd60df0b572c0a9fdb496cc9425a773",
-                "reference": "4e7820a75dd60df0b572c0a9fdb496cc9425a773",
+                "url": "https://api.github.com/repos/Arcavias/ext-zend/zipball/b7b8f170f2c0d7f110439ac60381d9ab89420c5f",
+                "reference": "b7b8f170f2c0d7f110439ac60381d9ab89420c5f",
                 "shasum": ""
             },
             "require": {
@@ -106,7 +106,7 @@
             ],
             "description": "Arcavias extension for utilizing Zend Framework components",
             "homepage": "http://www.arcavias.com/en",
-            "time": "2014-02-05 17:33:55"
+            "time": "2014-03-04 15:23:14"
         },
         {
             "name": "arcavias/extension-installer",
