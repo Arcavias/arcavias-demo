@@ -29,7 +29,9 @@ try
 	$searchSchema = $jsonrpc->getJsonSearchSchemas();
 	$smd = $jsonrpc->getJsonSmd( 'jsonrpc.php' );
 	$config = $init->getJsonClientConfig();
-	$i18n = $init->getJsonClientI18n( isset( $_REQUEST['locale'] ) ? $_REQUEST['locale'] : 'en' );
+
+	$localeCode = (strlen($_REQUEST['locale']) == 2) ? $_REQUEST['locale'] : false;
+	$i18n = $init->getJsonClientI18n( $localeCode ? $localeCode : 'en' );
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
