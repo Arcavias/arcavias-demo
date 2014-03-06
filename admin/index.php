@@ -32,6 +32,7 @@ try
 
 	$localeCode = preg_match( '/[a-z]{2}([A-Z]{2})?/', $_REQUEST['locale'] ) ? $_REQUEST['locale'] : false;
 	$i18n = $init->getJsonClientI18n( $localeCode ? $localeCode : 'en' );
+    
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -43,7 +44,8 @@ try
 
 			i18n: {
 				locale: 'en',
-				content: <?php echo $i18n; ?>
+				content: <?php echo $i18n; ?>,
+				availableLanguages: <?php echo json_encode($init->getAvailableLanguages()) ?>
 			},
 
 			config: {
