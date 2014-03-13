@@ -17,6 +17,9 @@
 		"arcavias/extension-installer": "dev-master",
 		"arcavias/ext-zend": "2014.03.x@dev"
 	},
+	"require-dev": {
+		"phing/phing": "2.4.*"
+	},
 	"autoload": {
 		"psr-0": {
 			"Zend": "zendlib",

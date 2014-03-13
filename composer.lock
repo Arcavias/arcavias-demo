@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "4cb64026ec6be50d6308912845823101",
+    "hash": "02e706f5b15ef72bb20c9863f5f02c2f",
     "packages": [
         {
             "name": "arcavias/arcavias-core",
@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Arcavias/arcavias-core.git",
-                "reference": "981bac9c3b8f3648ec160e282e5f6c256b7360d6"
+                "reference": "7cfb2f8f8452326289055663e9106527672cc825"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Arcavias/arcavias-core/zipball/981bac9c3b8f3648ec160e282e5f6c256b7360d6",
-                "reference": "981bac9c3b8f3648ec160e282e5f6c256b7360d6",
+                "url": "https://api.github.com/repos/Arcavias/arcavias-core/zipball/7cfb2f8f8452326289055663e9106527672cc825",
+                "reference": "7cfb2f8f8452326289055663e9106527672cc825",
                 "shasum": ""
             },
             "require": {
@@ -32,7 +32,12 @@
                 "php": ">=5.2.0"
             },
             "require-dev": {
-                "phpdocumentor/phpdocumentor": "2.*"
+                "phing/phing": "2.4.*",
+                "phpunit/phpunit": "3.7.*",
+                "squizlabs/php_codesniffer": "1.*"
+            },
+            "suggest": {
+                "phpdocumentor/phpdocumentor": "Required for generating the API documentation"
             },
             "type": "library",
             "autoload": {
@@ -72,7 +77,7 @@
                 "portal",
                 "shop"
             ],
-            "time": "2014-03-04 15:06:12"
+            "time": "2014-03-12 18:00:49"
         },
         {
             "name": "arcavias/ext-zend",
@@ -80,12 +85,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Arcavias/ext-zend.git",
-                "reference": "b7b8f170f2c0d7f110439ac60381d9ab89420c5f"
+                "reference": "8140d440a9621917b8328cc2deb0915c303080bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Arcavias/ext-zend/zipball/b7b8f170f2c0d7f110439ac60381d9ab89420c5f",
-                "reference": "b7b8f170f2c0d7f110439ac60381d9ab89420c5f",
+                "url": "https://api.github.com/repos/Arcavias/ext-zend/zipball/8140d440a9621917b8328cc2deb0915c303080bc",
+                "reference": "8140d440a9621917b8328cc2deb0915c303080bc",
                 "shasum": ""
             },
             "require": {
@@ -106,7 +111,7 @@
             ],
             "description": "Arcavias extension for utilizing Zend Framework components",
             "homepage": "http://www.arcavias.com/en",
-            "time": "2014-03-04 15:23:14"
+            "time": "2014-03-10 10:29:52"
         },
         {
             "name": "arcavias/extension-installer",
@@ -141,7 +146,58 @@
         }
     ],
     "packages-dev": [
-
+        {
+            "name": "phing/phing",
+            "version": "2.4.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phingofficial/phing.git",
+                "reference": "41075d93ca254f1c90c79ec7ce81be2b2629e138"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phingofficial/phing/zipball/41075d93ca254f1c90c79ec7ce81be2b2629e138",
+                "reference": "41075d93ca254f1c90c79ec7ce81be2b2629e138",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "bin": [
+                "bin/phing"
+            ],
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "classes/phing/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "include-path": [
+                "classes"
+            ],
+            "license": [
+                "LGPL3"
+            ],
+            "authors": [
+                {
+                    "name": "Michiel Rook",
+                    "email": "mrook@php.net"
+                },
+                {
+                    "name": "Phing Community",
+                    "homepage": "http://www.phing.info/trac/wiki/Development/Contributors"
+                }
+            ],
+            "description": "PHing Is Not GNU make; it's a PHP project build system or build tool based on Apache Ant.",
+            "homepage": "http://www.phing.info/",
+            "keywords": [
+                "build",
+                "task",
+                "tool"
+            ],
+            "time": "2012-11-29 21:23:47"
+        }
     ],
     "aliases": [
 
