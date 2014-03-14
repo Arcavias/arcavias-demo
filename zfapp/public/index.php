@@ -23,6 +23,11 @@ if ( APPLICATION_ENV == 'development' ) {
 
 setlocale( LC_CTYPE, 'en_US.UTF8' );
 
+if( !function_exists( '_' ) ) {
+	function _() {};
+}
+
+
 try
 {
 	require_once dirname( ZFAPP_ROOT ) . '/vendor/autoload.php';
