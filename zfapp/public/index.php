@@ -21,6 +21,7 @@ if ( APPLICATION_ENV == 'development' ) {
 	ini_set( 'display_errors', true );
 }
 
+date_default_timezone_set( 'UTC' );
 setlocale( LC_CTYPE, 'en_US.UTF8' );
 
 if( !function_exists( '_' ) ) {
