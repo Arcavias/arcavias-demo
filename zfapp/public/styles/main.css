@@ -232,11 +232,13 @@ ul.menu ul li {
 }
 
 #navigationMenue a:first-child {
-	border-radius: 5px 0px 0px 5px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
 }
 
 #navigationMenue a:last-child {
-	border-radius: 0px 5px 5px 0px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 }
 
 #navigationMenue a:hover {
