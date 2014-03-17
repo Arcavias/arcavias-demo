@@ -266,6 +266,10 @@ ul.menu ul li {
 	background: #FFFFFF;
 }
 
+#contentLeft .catalog-filter-search {
+	display: none;
+}
+
 #contentRight {
 	width: 77%; 
 	float: left; 
