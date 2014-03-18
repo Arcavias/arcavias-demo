@@ -57,7 +57,6 @@ class Init
 	 */
 	public function getAvailableLanguages ()
 	{
-		// $languageManager = MShop_Factory( $this->_context, 'locale/language' );
 		$localeManager = MShop_Locale_Manager_Factory::createManager( $this->_context );
 		$languageManager = $localeManager->getSubManager("language");
 
@@ -65,6 +64,10 @@ class Init
 		$pathToExtJSTranslation = $i18nPaths['client/extjs/ext'][0];
 
 		$langDirArray = scandir($pathToExtJSTranslation);
+
+		if ( $langDirArray === false ) {
+			return array();
+		}
 
 		$langs = array();
 		foreach($langDirArray as $file) {
