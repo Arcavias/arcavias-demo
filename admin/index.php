@@ -30,8 +30,9 @@ try
 	$smd = $jsonrpc->getJsonSmd( 'jsonrpc.php' );
 	$config = $init->getJsonClientConfig();
 
+	$available = json_encode($init->getAvailableLanguages());
 	$i18n = $init->getJsonClientI18n( isset( $_REQUEST['locale'] ) ? $_REQUEST['locale'] : 'en' );
-    
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -44,7 +45,7 @@ try
 			i18n: {
 				locale: 'en',
 				content: <?php echo $i18n; ?>,
-				available: <?php echo json_encode($init->getAvailableLanguages()) ?>
+				available: <?php echo $available ?>
 			},
 
 			config: {
