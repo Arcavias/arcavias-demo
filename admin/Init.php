@@ -57,22 +57,17 @@ class Init
 	 */
 	public function getAvailableLanguages ()
 	{
-		$localeManager = MShop_Locale_Manager_Factory::createManager( $this->_context );
-		$languageManager = $localeManager->getSubManager("language");
-
-		$i18nPaths = $this->_arcavias->getI18nPaths();
-		$pathToExtJSTranslation = $i18nPaths['client/extjs/ext'][0];
-
-		$langDirArray = scandir($pathToExtJSTranslation);
-
-		if ( $langDirArray === false ) {
-			return array();
-		}
+		$languageManager = MShop_Factory::createManager( $this->_context, 'locale/language' );
 
 		$langs = array();
-		foreach($langDirArray as $file) {
-			if (preg_match('/^\w{2}\.po$/', $file))
-				$langs[] = substr($file, 0, 2);
+		
+		foreach ( $this->_arcavias->getI18nPaths() as $path ) {
+			if( ( $scan = scandir( $path[0] ) ) !== false ) {
+				foreach( $scan as $file ) {
+					if ( preg_match('/^\w{2}\.po$/', $file ) )
+						$langs[] = substr($file, 0, 2);
+				}
+			}
 		}
 
 		$search = $languageManager->createSearch();
