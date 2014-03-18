@@ -45,7 +45,7 @@ try
 			i18n: {
 				locale: 'en',
 				content: <?php echo $i18n; ?>,
-				availableLanguages: <?php echo json_encode($init->getAvailableLanguages()) ?>
+				available: <?php echo json_encode($init->getAvailableLanguages()) ?>
 			},
 
 			config: {
