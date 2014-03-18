@@ -18,7 +18,7 @@ try
 
 	$configPaths = array( $basedir. 'config', $appdir . 'config' );
 
-	$arcavias = new Arcavias( array( $basedir . 'ext' ), true, dirname(__DIR__) . '/vendor/arcavias/arcavias-core/' );
+	$arcavias = new Arcavias( array( $basedir . 'ext' ), true, dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'arcavias' . DIRECTORY_SEPARATOR . 'arcavias-core' . DIRECTORY_SEPARATOR );
 	$init = new Init( $arcavias, $configPaths );
 
 	$html = $init->getHtml( realpath($_SERVER['SCRIPT_FILENAME']), $_SERVER['SCRIPT_NAME'] );
