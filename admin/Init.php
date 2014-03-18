@@ -53,31 +53,37 @@ class Init
 	/**
 	 * Creates a array of all available translations
 	 * 
-	 * @return Json
+	 * @return array List of language IDs with labels 
 	 */
-	public function getAvailableLanguages ()
+	public function getAvailableLanguages()
 	{
 		$languageManager = MShop_Factory::createManager( $this->_context, 'locale/language' );
+		$paths = $this->_arcavias->getI18nPaths();
+		$langs = $result = array();
 
-		$langs = array();
-		
-		foreach ( $this->_arcavias->getI18nPaths() as $path ) {
-			if( ( $scan = scandir( $path[0] ) ) !== false ) {
-				foreach( $scan as $file ) {
-					if ( preg_match('/^\w{2}\.po$/', $file ) )
-						$langs[] = substr($file, 0, 2);
+		if( isset( $paths['client/extjs'] ) )
+		{
+			foreach( $paths['client/extjs'] as $path )
+			{
+				if( ( $scan = scandir( $path ) ) !== false )
+				{
+					foreach( $scan as $file )
+					{
+						if( preg_match('/^[a-z]{2,3}(_[A-Z]{2})?$/', $file ) ) {
+							$langs[$file] = null;
+						}
+					}
 				}
 			}
 		}
 
 		$search = $languageManager->createSearch();
-
-		$search->setConditions( $search->compare('==', 'locale.language.id', $langs ) );
+		$search->setConditions( $search->compare('==', 'locale.language.id', array_keys( $langs ) ) );
+		$search->setSortations( array( $search->sort( '-', 'locale.language.status' ), $search->sort( '+', 'locale.language.label' ) ) );
 		$langItems = $languageManager->searchItems( $search );
 
-		$result = array();
 		foreach( $langItems as $id => $item ) {
-			$result[] = array('id' => $id, 'label' => $item->getLabel());
+			$result[] = array( 'id' => $id, 'label' => $item->getLabel() );
 		}
 
 		return $result;
