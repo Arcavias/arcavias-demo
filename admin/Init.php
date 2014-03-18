@@ -50,38 +50,40 @@ class Init
 		return new Controller_ExtJS_JsonRpc( $this->_context, $cntlPaths );
 	}
 
-    /**
-     * Creates a array of all available translations
-     * 
-     * @return Json
-     */
-    public function getAvailableLanguages () {
-        $localeManager = MShop_Locale_Manager_Factory::createManager( $this->_context );
-        $languageManager = $localeManager->getSubManager("language");
+	/**
+	 * Creates a array of all available translations
+	 * 
+	 * @return Json
+	 */
+	public function getAvailableLanguages ()
+	{
+		// $languageManager = MShop_Factory( $this->_context, 'locale/language' );
+		$localeManager = MShop_Locale_Manager_Factory::createManager( $this->_context );
+		$languageManager = $localeManager->getSubManager("language");
 
-        $i18nPaths = $this->_arcavias->getI18nPaths();
-        $pathToExtJSTranslation = $i18nPaths['client/extjs/ext'][0];
+		$i18nPaths = $this->_arcavias->getI18nPaths();
+		$pathToExtJSTranslation = $i18nPaths['client/extjs/ext'][0];
 
-        $langDirArray = scandir($pathToExtJSTranslation);
+		$langDirArray = scandir($pathToExtJSTranslation);
 
-        $langs = array();
-        foreach($langDirArray as $file) {
-            if (preg_match('/^\w{2}\.po$/', $file))
-                $langs[] = substr($file, 0, 2);
-        }
+		$langs = array();
+		foreach($langDirArray as $file) {
+			if (preg_match('/^\w{2}\.po$/', $file))
+				$langs[] = substr($file, 0, 2);
+		}
 
-        $search = $languageManager->createSearch();
+		$search = $languageManager->createSearch();
 
-        $search->setConditions( $search->compare('==', 'locale.language.id', $langs ) );
-        $langItems = $languageManager->searchItems( $search );
+		$search->setConditions( $search->compare('==', 'locale.language.id', $langs ) );
+		$langItems = $languageManager->searchItems( $search );
 
-        $result = array();
-        foreach( $langItems as $id => $item ) {
-            $result[] = array('id' => $id, 'label' => $item->getLabel());
-        }
+		$result = array();
+		foreach( $langItems as $id => $item ) {
+			$result[] = array('id' => $id, 'label' => $item->getLabel());
+		}
 
-        return $result;
-    }
+		return $result;
+	}
 
 	public function getJsonSite( $site )
 	{
