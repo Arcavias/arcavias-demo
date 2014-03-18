@@ -7,9 +7,9 @@
 
 header( 'Content-type: text/html; charset=UTF-8' );
 
-header( "Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:" );
-header( "X-Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:" );
-header( "X-Webkit-CSP: default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:" );
+header( "Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://demo.arcavias.com" );
+header( "X-Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://demo.arcavias.com" );
+header( "X-Webkit-CSP: default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://demo.arcavias.com" );
 
 
 define( 'ZFAPP_ROOT', dirname( dirname( __FILE__ ) ) );
