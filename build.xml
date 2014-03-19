@@ -85,9 +85,9 @@ return array(
 	</target>
 
 
-	<target name="setup" description="Sets up database incl. unit test and performance data">
-		<echo msg="Setting up test database" />
-		<exec command="php ${coredir}/setup.php --config=${project.basedir}/config --extdir=${project.basedir}/ext unittest" checkreturn="true" logoutput="true"/>
+	<target name="setup" description="Sets up database incl. demo and performance data">
+		<echo msg="Setting up demo database" />
+		<exec command="php ${coredir}/setup.php --config=${project.basedir}/config --extdir=${project.basedir}/ext --option=setup/default/demo:1" checkreturn="true" logoutput="true"/>
 		<input propertyname="perfdata" promptChar=":" defaultValue="Yes" validArgs="YES,no" >Add performance data (takes several minutes) </input>
 		<if>
 			<equals arg1="${perfdata}" arg2="YES" />
