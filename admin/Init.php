@@ -50,6 +50,44 @@ class Init
 		return new Controller_ExtJS_JsonRpc( $this->_context, $cntlPaths );
 	}
 
+	/**
+	 * Creates a array of all available translations
+	 * 
+	 * @return array List of language IDs with labels 
+	 */
+	public function getAvailableLanguages()
+	{
+		$languageManager = MShop_Factory::createManager( $this->_context, 'locale/language' );
+		$paths = $this->_arcavias->getI18nPaths();
+		$langs = $result = array();
+
+		if( isset( $paths['client/extjs'] ) )
+		{
+			foreach( $paths['client/extjs'] as $path )
+			{
+				if( ( $scan = scandir( $path ) ) !== false )
+				{
+					foreach( $scan as $file )
+					{
+						if( preg_match('/^[a-z]{2,3}(_[A-Z]{2})?$/', $file ) ) {
+							$langs[$file] = null;
+						}
+					}
+				}
+			}
+		}
+
+		$search = $languageManager->createSearch();
+		$search->setConditions( $search->compare('==', 'locale.language.id', array_keys( $langs ) ) );
+		$search->setSortations( array( $search->sort( '-', 'locale.language.status' ), $search->sort( '+', 'locale.language.label' ) ) );
+		$langItems = $languageManager->searchItems( $search );
+
+		foreach( $langItems as $id => $item ) {
+			$result[] = array( 'id' => $id, 'label' => $item->getLabel() );
+		}
+
+		return $result;
+	}
 
 	public function getJsonSite( $site )
 	{
