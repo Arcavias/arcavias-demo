@@ -47,7 +47,7 @@ abstract class Application_Controller_Action_Abstract extends Zend_Controller_Ac
 		if( isset( $this->config['template-baseurl'] ) ) {
 			$templateUrl = $this->config['template-baseurl'];
 		} else {
-			$templateUrl = rtrim( dirname( dirname( $pathstart ) ), '/' ) . '/vendor/arcavias/arcavias-core/client/html/lib';
+			$templateUrl = rtrim( dirname( dirname( $pathstart ) ), '/' ) . '/vendor/arcavias/arcavias-core/client/html/lib/classic';
 		}
 
 		$viewParts = array(
