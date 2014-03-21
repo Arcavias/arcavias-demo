@@ -18,7 +18,7 @@ try
 
 	$configPaths = array( $basedir. 'config', $appdir . 'config' );
 
-	$arcavias = new Arcavias( array( $basedir . 'ext' ) );
+	$arcavias = new Arcavias( array( $basedir . 'ext' ), true, dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'arcavias' . DIRECTORY_SEPARATOR . 'arcavias-core' . DIRECTORY_SEPARATOR );
 	$init = new Init( $arcavias, $configPaths );
 
 	$html = $init->getHtml( realpath($_SERVER['SCRIPT_FILENAME']), $_SERVER['SCRIPT_NAME'] );
@@ -29,7 +29,10 @@ try
 	$searchSchema = $jsonrpc->getJsonSearchSchemas();
 	$smd = $jsonrpc->getJsonSmd( 'jsonrpc.php' );
 	$config = $init->getJsonClientConfig();
-	$i18n = $init->getJsonClientI18n( 'en' );
+
+	$available = json_encode($init->getAvailableLanguages());
+	$i18n = $init->getJsonClientI18n( isset( $_REQUEST['locale'] ) ? $_REQUEST['locale'] : 'en' );
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -41,7 +44,8 @@ try
 
 			i18n: {
 				locale: 'en',
-				content: <?php echo $i18n; ?>
+				content: <?php echo $i18n; ?>,
+				available: <?php echo $available ?>
 			},
 
 			config: {
@@ -55,7 +59,7 @@ try
 
 				smd: <?php echo $smd ?>,
 
-				urlTemplate: "index.php?&site={site}&tab={tab}",
+				urlTemplate: "index.php?&site={site}&tab={tab}&locale={locale}",
 
 				activeTab: <?php echo isset( $_REQUEST['tab'] ) ? $_REQUEST['tab'] : 0; ?>,
 
