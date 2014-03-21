@@ -31,7 +31,8 @@ try
 	$config = $init->getJsonClientConfig();
 
 	$available = json_encode($init->getAvailableLanguages());
-	$i18n = $init->getJsonClientI18n( isset( $_REQUEST['locale'] ) ? $_REQUEST['locale'] : 'en' );
+	$locale = isset( $_REQUEST['locale'] ) ? $_REQUEST['locale'] : 'en';
+	$i18n = $init->getJsonClientI18n( $locale );
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -43,7 +44,7 @@ try
 		window.MShop = {
 
 			i18n: {
-				locale: 'en',
+				locale: '<?php echo $locale; ?>',
 				content: <?php echo $i18n; ?>,
 				available: <?php echo $available ?>
 			},
