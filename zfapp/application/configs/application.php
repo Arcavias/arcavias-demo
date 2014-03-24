@@ -10,12 +10,12 @@ $appConfig = array(
 		/**
 		 * Site to use by default
 		 */
-		'defaultSite' => 'unittest',
+		'defaultSite' => 'default',
 		/**
 		 * Set default sortation in list views
-		 * possible values: position, name, price
+		 * possible values: relevance, name, price
 		 */
-		'defaultSortation' => 'position',
+		'defaultSortation' => 'relevance',
 		/**
 		 * Paginator, number of items in a list view
 		 */
