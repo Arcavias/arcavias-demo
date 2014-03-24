@@ -7,16 +7,10 @@ then
 
 elif ! test -f composer;
 then
-	if command -v curl >/dev/null 2>&1; then
-		curl -sS https://getcomposer.org/installer | php;
-	else
-		php -r "readfile('https://getcomposer.org/installer');" | php;
-	fi
-
-	mv composer.phar composer;
+	php -r "readfile('https://getcomposer.org/installer');" | php -- --filename=composer;
+	php composer install;
 fi;
 
-php composer install;
 php vendor/bin/phing install;
 
 exit 0;
