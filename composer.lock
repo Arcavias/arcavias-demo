@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Arcavias/arcavias-core.git",
-                "reference": "f26d57450a64613675c89e4f702f44ba8a161068"
+                "reference": "992d72e9cb1507be976d1f692675f3172a74435a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Arcavias/arcavias-core/zipball/f26d57450a64613675c89e4f702f44ba8a161068",
-                "reference": "f26d57450a64613675c89e4f702f44ba8a161068",
+                "url": "https://api.github.com/repos/Arcavias/arcavias-core/zipball/992d72e9cb1507be976d1f692675f3172a74435a",
+                "reference": "992d72e9cb1507be976d1f692675f3172a74435a",
                 "shasum": ""
             },
             "require": {
@@ -77,7 +77,7 @@
                 "portal",
                 "shop"
             ],
-            "time": "2014-03-20 10:16:19"
+            "time": "2014-03-28 14:30:42"
         },
         {
             "name": "arcavias/ext-zend",
