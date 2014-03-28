@@ -22,7 +22,7 @@ try
 	$init = new Init( $arcavias, $configPaths );
 
 	$html = $init->getHtml( realpath($_SERVER['SCRIPT_FILENAME']), $_SERVER['SCRIPT_NAME'] );
-	$site = $init->getJsonSite( ( isset( $_REQUEST['site'] ) ? $_REQUEST['site'] : 'unittest' ) );
+	$site = $init->getJsonSite( ( isset( $_REQUEST['site'] ) ? $_REQUEST['site'] : 'default' ) );
 	$jsonrpc = $init->getJsonRpcController();
 
 	$itemSchema = $jsonrpc->getJsonItemSchemas();
