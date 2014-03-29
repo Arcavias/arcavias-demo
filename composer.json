@@ -13,9 +13,9 @@
 	},
 	"require": {
 		"php": ">=5.2.0",
-		"arcavias/arcavias-core": "2014.03.x@dev",
-		"arcavias/extension-installer": "dev-master",
-		"arcavias/ext-zend": "2014.03.x@dev"
+		"arcavias/arcavias-core": "2014.03.*",
+		"arcavias/extension-installer": "2014.03.*",
+		"arcavias/ext-zend": "2014.03.*"
 	},
 	"require-dev": {
 		"phing/phing": "2.4.*"
