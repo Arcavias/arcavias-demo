@@ -52,8 +52,8 @@ class Init
 
 	/**
 	 * Creates a array of all available translations
-	 * 
-	 * @return array List of language IDs with labels 
+	 *
+	 * @return array List of language IDs with labels
 	 */
 	public function getAvailableLanguages()
 	{
@@ -119,7 +119,6 @@ class Init
 
 		$relpath = rtrim( $relpath, '/' );
 		$abslen = strlen( $absdir );
-		$ds = DIRECTORY_SEPARATOR;
 		$html = '';
 
 		foreach( $this->_arcavias->getCustomPaths( 'client/extjs' ) as $base => $paths )
@@ -128,8 +127,8 @@ class Init
 
 			foreach( $paths as $path )
 			{
-				$jsbPath = $relpath . $relJsbPath . $ds . $path;
-				$jsbAbsPath = $base . $ds . $path;
+				$jsbPath = $relpath . $relJsbPath . '/' . $path;
+				$jsbAbsPath = $base . '/' . $path;
 
 				if( !is_file( $jsbAbsPath ) ) {
 					throw new Exception( sprintf( 'JSB2 file "%1$s" not found', $jsbAbsPath ) );
