@@ -1,26 +1,26 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "02e706f5b15ef72bb20c9863f5f02c2f",
+    "hash": "76608cec54c35bc991791848fb4bc2f8",
     "packages": [
         {
             "name": "arcavias/arcavias-core",
-            "version": "dev-master",
+            "version": "2014.05.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Arcavias/arcavias-core.git",
-                "reference": "992d72e9cb1507be976d1f692675f3172a74435a"
+                "reference": "6bb46478299cb77830cff6bd6d2e347fc5ff86d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Arcavias/arcavias-core/zipball/992d72e9cb1507be976d1f692675f3172a74435a",
-                "reference": "992d72e9cb1507be976d1f692675f3172a74435a",
+                "url": "https://api.github.com/repos/Arcavias/arcavias-core/zipball/6bb46478299cb77830cff6bd6d2e347fc5ff86d0",
+                "reference": "6bb46478299cb77830cff6bd6d2e347fc5ff86d0",
                 "shasum": ""
             },
             "require": {
-                "arcavias/extension-installer": "dev-master",
                 "ext-curl": "*",
                 "ext-dom": "*",
                 "ext-json": "*",
@@ -77,24 +77,21 @@
                 "portal",
                 "shop"
             ],
-            "time": "2014-03-28 14:30:42"
+            "time": "2014-06-02 17:49:34"
         },
         {
             "name": "arcavias/ext-zend",
-            "version": "dev-master",
+            "version": "2014.05.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Arcavias/ext-zend.git",
-                "reference": "8140d440a9621917b8328cc2deb0915c303080bc"
+                "reference": "5bcccba83860500e2acdc991b556767397eb6a68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Arcavias/ext-zend/zipball/8140d440a9621917b8328cc2deb0915c303080bc",
-                "reference": "8140d440a9621917b8328cc2deb0915c303080bc",
+                "url": "https://api.github.com/repos/Arcavias/ext-zend/zipball/5bcccba83860500e2acdc991b556767397eb6a68",
+                "reference": "5bcccba83860500e2acdc991b556767397eb6a68",
                 "shasum": ""
-            },
-            "require": {
-                "arcavias/extension-installer": "dev-master"
             },
             "type": "arcavias-extension",
             "autoload": {
@@ -111,11 +108,11 @@
             ],
             "description": "Arcavias extension for utilizing Zend Framework components",
             "homepage": "http://www.arcavias.com/en",
-            "time": "2014-03-10 10:29:52"
+            "time": "2014-03-29 18:36:25"
         },
         {
             "name": "arcavias/extension-installer",
-            "version": "dev-master",
+            "version": "2014.03.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Arcavias/extension-installer.git",
@@ -145,60 +142,7 @@
             "time": "2013-07-08 12:47:55"
         }
     ],
-    "packages-dev": [
-        {
-            "name": "phing/phing",
-            "version": "2.4.14",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phingofficial/phing.git",
-                "reference": "41075d93ca254f1c90c79ec7ce81be2b2629e138"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phingofficial/phing/zipball/41075d93ca254f1c90c79ec7ce81be2b2629e138",
-                "reference": "41075d93ca254f1c90c79ec7ce81be2b2629e138",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.0"
-            },
-            "bin": [
-                "bin/phing"
-            ],
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "classes/phing/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "include-path": [
-                "classes"
-            ],
-            "license": [
-                "LGPL3"
-            ],
-            "authors": [
-                {
-                    "name": "Michiel Rook",
-                    "email": "mrook@php.net"
-                },
-                {
-                    "name": "Phing Community",
-                    "homepage": "http://www.phing.info/trac/wiki/Development/Contributors"
-                }
-            ],
-            "description": "PHing Is Not GNU make; it's a PHP project build system or build tool based on Apache Ant.",
-            "homepage": "http://www.phing.info/",
-            "keywords": [
-                "build",
-                "task",
-                "tool"
-            ],
-            "time": "2012-11-29 21:23:47"
-        }
-    ],
+    "packages-dev": null,
     "aliases": [
 
     ],
