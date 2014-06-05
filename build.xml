@@ -3,6 +3,7 @@
 <project name="Arcavias demo application" default="install">
 
 	<property name="coredir" value="${project.basedir}/vendor/arcavias/arcavias-core" override="true" />
+	<property name="extdir" value="${project.basedir}/ext" override="true" />
 
 
 	<target name="database" description="Creates the database configuration">
@@ -133,6 +134,11 @@ return array(
 			checkreturn="true" logoutput="true"/>
 		<filehash file="../arcavias-demo_${version}.tar.bz2" hashtype="1" />
 		<echo msg="SHA1 hash value: ${filehashvalue}" />
+	</target>
+
+
+	<target name="createext" description="Creates new extension">
+		<phing target="createext" dir="${coredir}" />
 	</target>
 
 
