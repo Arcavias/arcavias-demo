@@ -4,3 +4,4 @@ images/files
 images/preview
 vendor/
 *.log
+misc/.vagrant

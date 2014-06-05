@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+
+# Mysql server setup
+echo mysql-server mysql-server/root_password select vagrant | debconf-set-selections
+echo mysql-server mysql-server/root_password_again select vagrant | debconf-set-selections
+
+# phpMyAdmin setup
+echo phpmyadmin phpmyadmin/dbconfig-install boolean true | debconf-set-selections
+echo phpmyadmin phpmyadmin/app-password-confirm password vagrant | debconf-set-selections
+echo phpmyadmin phpmyadmin/mysql/admin-pass password vagrant | debconf-set-selections
+echo phpmyadmin phpmyadmin/mysql/app-pass password vagrant | debconf-set-selections
+echo phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2 | debconf-set-selections
+
+
+# Update package lists
+apt-get update
+
+# Install LAMP stack
+apt-get install -y mysql-server apache2 php5 libapache2-mod-php5 php5-mysql php5-gd php5-curl php-pear php5-xsl phpmyadmin
+
+# Install DEV tools
+apt-get install -y git curl
+
+# Setup composer or if already installed it would update
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
+
+# Provide index.html file for easier access
+echo "
+<html>
+	<head><title>Arcavias Demo</title></head>
+	<body>
+		<h1>Arcavias Demo</h1>
+		<ul>
+			<li><a href="/arcavias-demo/zfapp/public/index.php">Zend Framework front-end</a></li>
+			<li><a href="/arcavias-demo/admin/index.php">Administration interface</a></li>
+		</ul>
+		<h1>Dev tools</h1>
+		<ul>
+			<li><a href="/phpmyadmin">PHPMyAdmin</a>
+				<ul>
+					<li>user name: root</li>
+					<li>password: vagrant</li>
+				</ul>
+			</li>
+		</ul>
+	<body>
+<html>
+" > /var/www/index.html
+
+# Setup Arcavias demo
+cd /var/www/arcavias-demo
+composer install
+
+# Add database for Arcavias if not existing
+mysql -u root -p"vagrant" -e "CREATE DATABASE IF NOT EXISTS arcavias;"
+
+# Configure database access
+echo "<?php
+return array(
+	'db' => array(
+		'adapter' => 'mysql',
+		'host' => 'localhost',
+		'port' => '3306',
+		'database' => 'arcavias',
+		'username' => 'root',
+		'password' => 'vagrant',
+		'limit' => 2,
+		'opt-persistent' => false,
+		'stmt' => array(
+			'SET NAMES \'utf8\'',
+			'SET SESSION sql_mode=\'ANSI\''
+		)
+	)
+);" > config/resource.php
+
+# Setup demo database
+echo "no" | ./vendor/bin/phing setup
