@@ -113,9 +113,6 @@ abstract class Application_Controller_Action_Abstract extends Zend_Controller_Ac
 		$dbm = new MW_DB_Manager_PDO( $conf );
 		$ctx->setDatabaseManager( $dbm );
 
-		$cache = new MW_Cache_None();
-		$ctx->setCache( $cache );
-
 		$i18n = new MW_Translation_Zend( self::_getArcavias()->getI18nPaths(), 'gettext', 'en_GB', array('disableNotices'=>true) );
 		if( function_exists( 'apc_store' ) === true ) {
 			$i18n = new MW_Translation_Decorator_APC( $i18n );
@@ -131,6 +128,9 @@ abstract class Application_Controller_Action_Abstract extends Zend_Controller_Ac
 		$localeManager = MShop_Locale_Manager_Factory::createManager($ctx);
 		$localeItem = $localeManager->bootstrap( $site, 'en', '', false );
 		$ctx->setLocale($localeItem);
+
+		$cache = new MAdmin_Cache_Proxy_Default( $ctx );
+		$ctx->setCache( $cache );
 
 		$ctx->setEditor( 'UTC001' );
 

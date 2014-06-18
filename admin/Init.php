@@ -158,11 +158,14 @@ class Init
 		$dbm = new MW_DB_Manager_PDO( $config );
 		$context->setDatabaseManager( $dbm );
 
-		$logger = new MAdmin_Log_Manager_Default( $context );
+		$logger = MAdmin_Log_Manager_Factory::createManager( $context );
 		$context->setLogger( $logger );
 
 		$locale = MShop_Locale_Manager_Factory::createManager( $context )->createItem();
 		$context->setLocale( $locale );
+
+		$cache = new MAdmin_Cache_Proxy_Default( $context );
+		$context->setCache( $cache );
 
 		$context->setEditor( 'tests' );
 
