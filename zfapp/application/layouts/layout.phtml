@@ -17,12 +17,12 @@ $sites = $this->sites();
 		<!--[if lt IE 9]>
 			<link href="<?php echo $this->pathstart;?>/styles/ie.css" type="text/css" rel="stylesheet" />
 		<![endif]-->
-		<script type="text/javascript" defer="defer" src="<?php echo $this->templateUrl;?>/js/jquery.min.js"></script>
+		<script type="text/javascript" src="<?php echo $this->templateUrl;?>/js/jquery.min.js"></script>
 		<script type="text/javascript" defer="defer" src="<?php echo $this->templateUrl;?>/js/jquery-ui.custom.min.js"></script>
 		<script type="text/javascript" defer="defer" src="<?php echo $this->templateUrl;?>/js/arcavias.js"></script>
 		<script type="text/javascript" defer="defer" src="<?php echo $this->pathstart;?>/js/main.js"></script>
-		<?php echo ( isset( $this->filter ) ? $this->filter->getHeader() : '' ); ?>
-		<?php echo ( isset( $this->searchfilter ) ? $this->searchfilter->getHeader() : '' ); ?>
+		<?php echo ( isset( $this->filter ) ? $this->filter->getHeader( 'nav' ) : '' ); ?>
+		<?php echo ( isset( $this->searchfilter ) ? $this->searchfilter->getHeader( 'search' ) : '' ); ?>
 		<?php echo ( isset( $this->stage ) ? $this->stage->getHeader() : '' ); ?>
 		<?php echo ( isset( $this->list ) ? $this->list->getHeader() : '' ); ?>
 		<?php echo ( isset( $this->detail ) ? $this->detail->getHeader() : '' ); ?>
@@ -75,7 +75,7 @@ $sites = $this->sites();
 								</nav>
 								<div id="headerSearch">
 									<?php if( isset( $this->searchfilter ) ) : ?>
-									<?php echo $this->searchfilter->getBody(); ?>
+									<?php echo $this->searchfilter->getBody( 'search' ); ?>
 									<?php endif; ?>
 								</div>
 							</div>
@@ -92,7 +92,7 @@ $sites = $this->sites();
 						<div id="content" class="clearfix">
 							<?php if( isset( $this->filter ) ) : ?>
 							<div id="contentLeft">
-								<?php echo $this->filter->getBody(); ?>
+								<?php echo $this->filter->getBody( 'nav' ); ?>
 							</div>
 							<div id="contentRight">
 								<?php echo ( isset( $this->stage ) ? $this->stage->getBody() : '' ); ?>
