@@ -6,8 +6,9 @@
 	<property name="extdir" value="${project.basedir}/ext" override="true" />
 
 
-	<target name="database" description="Creates the database configuration">
-		<echo msg="Creating database configuration" />
+	<target name="resource" description="Creates the resource configuration">
+		<echo msg="Creating resource configuration" />
+		<input propertyName="cache" promptChar="   :" defaultValue="1" validArgs="1,0" >Enable cache</input>
 		<input propertyName="dbadapter" promptChar="   :" defaultValue="mysql" >Database type</input>
 		<input propertyName="dbhost" promptChar=" :" defaultValue="localhost" >Server host</input>
 		<input propertyName="dbport" promptChar="      :" defaultValue="3306" >Server port</input>
@@ -16,6 +17,7 @@
 		<input propertyName="dbpass" promptChar="             :" defaultValue="" >Password</input>
 		<echo file="${project.basedir}/config/resource.php">&lt;?php
 return array(
+	'cache' => '${cache}',
 	'db' => array(
 		'adapter' => '${dbadapter}',
 		'host' => '${dbhost}',
@@ -142,7 +144,7 @@ return array(
 	</target>
 
 
-	<target name="install" depends="database,email,composer,permission,setup" description="Installs the Arcavias demo application with unit test data" />
+	<target name="install" depends="resource,email,composer,permission,setup" description="Installs the Arcavias demo application with unit test data" />
 	<target name="update" depends="code,setup" description="Updatess the Arcavias demo application including the unit test data" />
 
 </project>
