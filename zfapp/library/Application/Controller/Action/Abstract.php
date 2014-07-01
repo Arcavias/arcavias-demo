@@ -129,7 +129,11 @@ abstract class Application_Controller_Action_Abstract extends Zend_Controller_Ac
 		$localeItem = $localeManager->bootstrap( $site, 'en', '', false );
 		$ctx->setLocale($localeItem);
 
-		$cache = new MAdmin_Cache_Proxy_Default( $ctx );
+		if( $conf->get( 'resource/cache', true ) == true ) {
+			$cache = new MAdmin_Cache_Proxy_Default( $ctx );
+		} else {
+			$cache = new MW_Cache_None();
+		}
 		$ctx->setCache( $cache );
 
 		$ctx->setEditor( 'UTC001' );
