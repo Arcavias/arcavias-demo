@@ -4,11 +4,11 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "02e706f5b15ef72bb20c9863f5f02c2f",
+    "hash": "6aad3cc0fad3e7de218a3b9ae71e4d6f",
     "packages": [
         {
             "name": "arcavias/arcavias-core",
-            "version": "dev-master",
+            "version": "2014.07.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Arcavias/arcavias-core.git",
@@ -83,7 +83,7 @@
         },
         {
             "name": "arcavias/ext-zend",
-            "version": "dev-master",
+            "version": "2014.05.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Arcavias/ext-zend.git",
@@ -114,7 +114,7 @@
         },
         {
             "name": "arcavias/extension-installer",
-            "version": "dev-master",
+            "version": "2014.03.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Arcavias/extension-installer.git",
