@@ -144,11 +144,11 @@ abstract class Application_Controller_Action_Abstract extends Zend_Controller_Ac
 		$cache = new MAdmin_Cache_Proxy_Default( $ctx );
 		$ctx->setCache( $cache );
 
-		$ctx->setEditor( 'UTC001' );
+		$ctx->setEditor( 'test' );
 
 		$customerManager = MShop_Customer_Manager_Factory::createManager( $ctx );
 		$search = $customerManager->createSearch( true );
-		$search->setConditions( $search->compare( '==', 'customer.code', 'UTC001' ) );
+		$search->setConditions( $search->compare( '==', 'customer.code', 'demo-test' ) );
 		$result = $customerManager->searchItems( $search );
 
 		if( ( $customerItem = reset( $result ) ) !== false ) {
