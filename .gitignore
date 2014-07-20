@@ -2,6 +2,7 @@ ext/*
 config/*
 images/files
 images/preview
+tests/config/*
 vendor/
 *.log
 misc/.vagrant

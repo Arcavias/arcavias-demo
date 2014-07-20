@@ -7,7 +7,9 @@
 
 try
 {
-	echo $this->account->getBody();
+	echo ( isset( $this->history ) ? $this->history->getBody() : '' );
+	echo ( isset( $this->favorite ) ? $this->favorite->getBody() : '' );
+	echo ( isset( $this->watch ) ? $this->watch->getBody() : '' );
 }
 catch( MW_Exception $e )
 {
