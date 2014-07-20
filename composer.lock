@@ -1,9 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "02e706f5b15ef72bb20c9863f5f02c2f",
+    "hash": "94ec915e9fc2a95181c9a5aa58520603",
     "packages": [
         {
             "name": "arcavias/arcavias-core",
@@ -11,16 +12,15 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Arcavias/arcavias-core.git",
-                "reference": "992d72e9cb1507be976d1f692675f3172a74435a"
+                "reference": "a0c9403714b8cd6eb16c90bcefb5cf1486695368"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Arcavias/arcavias-core/zipball/992d72e9cb1507be976d1f692675f3172a74435a",
-                "reference": "992d72e9cb1507be976d1f692675f3172a74435a",
+                "url": "https://api.github.com/repos/Arcavias/arcavias-core/zipball/a0c9403714b8cd6eb16c90bcefb5cf1486695368",
+                "reference": "a0c9403714b8cd6eb16c90bcefb5cf1486695368",
                 "shasum": ""
             },
             "require": {
-                "arcavias/extension-installer": "dev-master",
                 "ext-curl": "*",
                 "ext-dom": "*",
                 "ext-json": "*",
@@ -46,6 +46,7 @@
                     "MAdmin": "lib/mshoplib/src",
                     "MW": "lib/mwlib/src",
                     "Client_Html": "client/html/src",
+                    "Controller_Common": "controller/common/src",
                     "Controller_Frontend": "controller/frontend/src",
                     "Controller_ExtJS": "controller/extjs/src",
                     "Controller_Jobs": "controller/jobs/src",
@@ -59,6 +60,7 @@
                     "lib/mwlib/lib",
                     "lib/mwlib/src",
                     "client/html/src",
+                    "controller/common/src",
                     "controller/frontend/src",
                     "controller/extjs/src",
                     "controller/jobs/src",
@@ -77,7 +79,7 @@
                 "portal",
                 "shop"
             ],
-            "time": "2014-03-28 14:30:42"
+            "time": "2014-07-20 10:26:12"
         },
         {
             "name": "arcavias/ext-zend",
@@ -85,16 +87,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Arcavias/ext-zend.git",
-                "reference": "8140d440a9621917b8328cc2deb0915c303080bc"
+                "reference": "5bcccba83860500e2acdc991b556767397eb6a68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Arcavias/ext-zend/zipball/8140d440a9621917b8328cc2deb0915c303080bc",
-                "reference": "8140d440a9621917b8328cc2deb0915c303080bc",
+                "url": "https://api.github.com/repos/Arcavias/ext-zend/zipball/5bcccba83860500e2acdc991b556767397eb6a68",
+                "reference": "5bcccba83860500e2acdc991b556767397eb6a68",
                 "shasum": ""
-            },
-            "require": {
-                "arcavias/extension-installer": "dev-master"
             },
             "type": "arcavias-extension",
             "autoload": {
@@ -111,7 +110,7 @@
             ],
             "description": "Arcavias extension for utilizing Zend Framework components",
             "homepage": "http://www.arcavias.com/en",
-            "time": "2014-03-10 10:29:52"
+            "time": "2014-03-29 18:36:25"
         },
         {
             "name": "arcavias/extension-installer",
