@@ -64,6 +64,18 @@ abstract class Application_Controller_Action_Abstract extends Zend_Controller_Ac
 				'content' => array( 'baseurl' => $contentUrl ),
 				'template' => array( 'baseurl' => $templateUrl ),
 			),
+			'account' => array(
+				'favorite' => array( 'url' => array(
+					'target' => 'routeDefault',
+					'controller' => 'account',
+					'action' => 'index'
+				) ),
+				'watch' => array( 'url' => array(
+					'target' => 'routeDefault',
+					'controller' => 'account',
+					'action' => 'index'
+				) ),
+			),
 			'basket' => array(
 				'standard' => array( 'url' => array( 'target' => 'routeDefault' ) ),
 			),
@@ -129,18 +141,14 @@ abstract class Application_Controller_Action_Abstract extends Zend_Controller_Ac
 		$localeItem = $localeManager->bootstrap( $site, 'en', '', false );
 		$ctx->setLocale($localeItem);
 
-		if( $conf->get( 'resource/cache', true ) == true ) {
-			$cache = new MAdmin_Cache_Proxy_Default( $ctx );
-		} else {
-			$cache = new MW_Cache_None();
-		}
+		$cache = new MAdmin_Cache_Proxy_Default( $ctx );
 		$ctx->setCache( $cache );
 
-		$ctx->setEditor( 'UTC001' );
+		$ctx->setEditor( 'test' );
 
 		$customerManager = MShop_Customer_Manager_Factory::createManager( $ctx );
 		$search = $customerManager->createSearch( true );
-		$search->setConditions( $search->compare( '==', 'customer.code', 'UTC001' ) );
+		$search->setConditions( $search->compare( '==', 'customer.code', 'demo-test' ) );
 		$result = $customerManager->searchItems( $search );
 
 		if( ( $customerItem = reset( $result ) ) !== false ) {

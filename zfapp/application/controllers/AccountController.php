@@ -11,9 +11,9 @@
 class AccountController extends Application_Controller_Action_Abstract
 {
 	/**
-	 * Integrates the account history.
+	 * Integrates the account favorite list.
 	 */
-	public function historyAction()
+	public function indexAction()
 	{
 		$startaction = microtime( true );
 
@@ -42,10 +42,17 @@ class AccountController extends Application_Controller_Action_Abstract
 			$this->view->minibasket->setView( $this->_createView() );
 			$this->view->minibasket->process();
 
+			$this->view->history = Client_Html_Account_History_Factory::createClient( $context, $templatePaths );
+			$this->view->history->setView( $this->_createView() );
+			$this->view->history->process();
 
-			$this->view->account = Client_Html_Account_History_Factory::createClient( $context, $templatePaths );
-			$this->view->account->setView( $this->_createView() );
-			$this->view->account->process();
+			$this->view->favorite = Client_Html_Account_Favorite_Factory::createClient( $context, $templatePaths );
+			$this->view->favorite->setView( $this->_createView() );
+			$this->view->favorite->process();
+
+			$this->view->watch = Client_Html_Account_Watch_Factory::createClient( $context, $templatePaths );
+			$this->view->watch->setView( $this->_createView() );
+			$this->view->watch->process();
 
 			$this->render( 'index' );
 		}
