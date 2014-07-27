@@ -65,6 +65,11 @@ abstract class Application_Controller_Action_Abstract extends Zend_Controller_Ac
 				'template' => array( 'baseurl' => $templateUrl ),
 			),
 			'account' => array(
+				'history' => array( 'url' => array(
+					'target' => 'routeDefault',
+					'controller' => 'account',
+					'action' => 'index'
+				) ),
 				'favorite' => array( 'url' => array(
 					'target' => 'routeDefault',
 					'controller' => 'account',
