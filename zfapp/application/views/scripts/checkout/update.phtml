@@ -7,8 +7,8 @@
 
 try
 {
-	echo $this->client->getHeader();
-	echo $this->client->getBody();
+	echo ( isset( $this->client ) ? $this->client->getHeader() : '' );
+	echo ( isset( $this->client ) ? $this->client->getBody() : '' );
 }
 catch( MW_Exception $e )
 {

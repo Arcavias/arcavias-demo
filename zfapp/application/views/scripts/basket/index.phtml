@@ -7,7 +7,7 @@
 
 try
 {
-	echo $this->basket->getBody();
+	echo ( isset( $this->basket ) ? $this->basket->getBody() : '' );
 }
 catch( MW_Exception $e )
 {
