@@ -11,7 +11,7 @@
 class AccountController extends Application_Controller_Action_Abstract
 {
 	/**
-	 * Integrates the account favorite list.
+	 * Integrates the account history, favorite and watch list.
 	 */
 	public function indexAction()
 	{

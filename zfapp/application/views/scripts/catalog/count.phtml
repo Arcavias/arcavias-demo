@@ -5,6 +5,6 @@
  * @license LGPLv3, http://www.arcavias.com/en/license
  */
 
-echo $this->count->getBody();
+echo ( isset( $this->count ) ? $this->count->getBody() : '' );
 
 ?>

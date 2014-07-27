@@ -65,6 +65,11 @@ abstract class Application_Controller_Action_Abstract extends Zend_Controller_Ac
 				'template' => array( 'baseurl' => $templateUrl ),
 			),
 			'account' => array(
+				'history' => array( 'url' => array(
+					'target' => 'routeDefault',
+					'controller' => 'account',
+					'action' => 'index'
+				) ),
 				'favorite' => array( 'url' => array(
 					'target' => 'routeDefault',
 					'controller' => 'account',
@@ -125,11 +130,15 @@ abstract class Application_Controller_Action_Abstract extends Zend_Controller_Ac
 		$dbm = new MW_DB_Manager_PDO( $conf );
 		$ctx->setDatabaseManager( $dbm );
 
-		$i18n = new MW_Translation_Zend( self::_getArcavias()->getI18nPaths(), 'gettext', 'en_GB', array('disableNotices'=>true) );
-		if( function_exists( 'apc_store' ) === true ) {
-			$i18n = new MW_Translation_Decorator_APC( $i18n );
+		$i18n_en = new MW_Translation_Zend( self::_getArcavias()->getI18nPaths(), 'gettext', 'en_GB', array('disableNotices'=>true) );
+		$i18n_de = new MW_Translation_Zend( self::_getArcavias()->getI18nPaths(), 'gettext', 'de', array('disableNotices'=>true) );
+
+		if( function_exists( 'apc_store' ) === true )
+		{
+			$i18n_en = new MW_Translation_Decorator_APC( $i18n_en );
+			$i18n_de = new MW_Translation_Decorator_APC( $i18n_de );
 		}
-		$ctx->setI18n( array( 'en' => $i18n ) );
+		$ctx->setI18n( array( 'en' => $i18n_en, 'de' => $i18n_de ) );
 
 		$session = new MW_Session_PHP();
 		$ctx->setSession( $session );
@@ -137,14 +146,38 @@ abstract class Application_Controller_Action_Abstract extends Zend_Controller_Ac
 		$logger = MAdmin_Log_Manager_Factory::createManager( $ctx );
 		$ctx->setLogger( $logger );
 
-		$localeManager = MShop_Locale_Manager_Factory::createManager($ctx);
-		$localeItem = $localeManager->bootstrap( $site, 'en', '', false );
-		$ctx->setLocale($localeItem);
-
 		$cache = new MAdmin_Cache_Proxy_Default( $ctx );
 		$ctx->setCache( $cache );
 
 		$ctx->setEditor( 'test' );
+
+
+		$current = $session->get( 'arcavias/locale/languageid', 'en' );
+		$language = $conf->get( 'mshop/locale/language', $current );
+
+		if( isset( $params['loc-language'] ) ) {
+			$language = $params['loc-language'];
+		}
+
+		if( $language !== $current ) {
+			$session->set( 'arcavias/locale/languageid', $language );
+		}
+
+		$current = $session->get( 'arcavias/locale/currencyid', 'EUR' );
+		$currency = $conf->get( 'mshop/locale/currency', $current );
+
+		if( isset( $params['loc-currency'] ) ) {
+			$currency = $params['loc-currency'];
+		}
+
+		if( $currency !== $current ) {
+			$session->set( 'arcavias/locale/currencyid', $currency );
+		}
+
+		$localeManager = MShop_Locale_Manager_Factory::createManager($ctx);
+		$localeItem = $localeManager->bootstrap( $site, $language, $currency, false );
+		$ctx->setLocale($localeItem);
+
 
 		$customerManager = MShop_Customer_Manager_Factory::createManager( $ctx );
 		$search = $customerManager->createSearch( true );
@@ -154,6 +187,7 @@ abstract class Application_Controller_Action_Abstract extends Zend_Controller_Ac
 		if( ( $customerItem = reset( $result ) ) !== false ) {
 			$ctx->setUserId( $customerItem->getId() );
 		}
+
 
 		Zend_Registry::set('ctx', $ctx);
 
@@ -178,6 +212,12 @@ abstract class Application_Controller_Action_Abstract extends Zend_Controller_Ac
 		}
 
 		$this->view->params = $params;
+
+
+		$templatePaths = $arcavias->getCustomPaths( 'client/html' );
+		$this->view->localeSelect = Client_Html_Locale_Select_Factory::createClient( $ctx, $templatePaths );
+		$this->view->localeSelect->setView( $this->_createView() );
+		$this->view->localeSelect->process();
 	}
 
 
@@ -187,6 +227,10 @@ abstract class Application_Controller_Action_Abstract extends Zend_Controller_Ac
 		$router = Zend_Controller_Front::getInstance()->getRouter();
 		$router->setGlobalParam( 'site', $this->_getParam( 'site' ) );
 
+		// Required to generate URLs to reload the current page
+		$params = $this->_getAllParams();
+		$params['target'] = 'routeDefault';
+
 		$view = new MW_View_Default();
 
 		$helper = new MW_View_Helper_Url_Zend( $view, $router, $this->_getServerUrl() );
@@ -195,7 +239,7 @@ abstract class Application_Controller_Action_Abstract extends Zend_Controller_Ac
 		$helper = new MW_View_Helper_Translate_Default( $view, $context->getI18n() );
 		$view->addHelper( 'translate', $helper );
 
-		$helper = new MW_View_Helper_Parameter_Default( $view, $this->_getAllParams() );
+		$helper = new MW_View_Helper_Parameter_Default( $view, $params );
 		$view->addHelper( 'param', $helper );
 
 		$helper = new MW_View_Helper_Config_Default( $view, $context->getConfig() );
