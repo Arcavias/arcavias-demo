@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6aad3cc0fad3e7de218a3b9ae71e4d6f",
+    "hash": "90e5b29e5c22f34f574112e603ec8696",
     "packages": [
         {
             "name": "arcavias/arcavias-core",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Arcavias/arcavias-core.git",
-                "reference": "32d28a0cb80eded1c989944e5a91eb5d7807d8a1"
+                "reference": "d890e0617b156a7b5e1be2af5382556a7c10b955"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Arcavias/arcavias-core/zipball/32d28a0cb80eded1c989944e5a91eb5d7807d8a1",
-                "reference": "32d28a0cb80eded1c989944e5a91eb5d7807d8a1",
+                "url": "https://api.github.com/repos/Arcavias/arcavias-core/zipball/d890e0617b156a7b5e1be2af5382556a7c10b955",
+                "reference": "d890e0617b156a7b5e1be2af5382556a7c10b955",
                 "shasum": ""
             },
             "require": {
@@ -79,11 +79,11 @@
                 "portal",
                 "shop"
             ],
-            "time": "2014-07-01 15:23:53"
+            "time": "2014-07-30 12:44:31"
         },
         {
             "name": "arcavias/ext-zend",
-            "version": "2014.05.x-dev",
+            "version": "2014.07.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Arcavias/ext-zend.git",
