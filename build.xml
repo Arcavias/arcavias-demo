@@ -120,6 +120,7 @@ return array(
 			<not><available file="${project.basedir}/tests/config/tests.php" type="file" property="testconfig" /></not>
 			<then>
 				<input propertyname="destaddr" promptChar=":" >Destination e-mail address</input>
+				<mkdir dir="${project.basedir}/tests/config" />
 				<echo file="${project.basedir}/tests/config/tests.php">&lt;?php
 return array(
 	'email' => array(
